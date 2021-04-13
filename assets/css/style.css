@@ -190,7 +190,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #272e31;}
     align-items: center;
     justify-content: center;
     position:relative;
-    background:url(../images/about/texture-1.jpg);
+    background:url(../images/about/yellow_header.png);
     background-size:cover;
     background-position: center;
     height:890px;
@@ -224,7 +224,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #272e31;}
 }
 
 .header-text h1:before {
-    position: absolute;
+    position: relative;
     top: 1.2em;
     height: 0;
     width: 41rem;
@@ -422,43 +422,20 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
     padding-bottom: 50px;
     border-bottom: 1px solid #e5ebf2;
 }
-.single-progress-txt {
+
+.section-heading-icons {
     display: flex;
+    justify-content: space-evenly;
+    padding-top: 50px;
+    padding-left: 20%;
+    padding-right: 20%;
 }
-.single-progress-txt h3 {
-    width: 10%;
-    color: #a606c3;
-    position: relative;
-    top: 6px;
-    left: 20px;
+
+.tooltip {
+   position: relative;
+   float: right;
 }
-.barWrapper {
-    font-weight: 400;
-    font-size: 16px;
-    text-transform: uppercase;
-}
-.progress {
-    border-radius:3px;
-    overflow: visible;
-    background: #e6ecf3;
-    height:8px;
-    margin-top: 15px;
-    width: 85%;
-    margin-bottom: 37px;
-}
-.progress-bar {
-   background: #b636ff;
-    border-radius: 3px;
-   -webkit-transition: width 1.5s ease-in-out;
-   -ms-transition: width 1.5s ease-in-out;
-   -moz-transition: width 1.5s ease-in-out;
-   -o-transition: width 1.5s ease-in-out;
-   transition: width 1.5s ease-in-out;
-}
-.tooltip{
-   position:relative;
-   float:right;
-}
+
 .tooltip > .tooltip-inner {
    background-color: transparent;
    padding: 1px 5px;
