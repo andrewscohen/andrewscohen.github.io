@@ -267,7 +267,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #272e31;}
     -o-transition: 0.3s linear;
     transition: 0.3s linear;
 }
-.header-text a:hover{ box-shadow: 0 5px 20px rgba(0,0,0,.4);background:#272e31;border: 1px solid #272e31; color:#fed925;; }
+.header-text a:hover{ box-shadow: 0 5px 20px rgba(0,0,0,.4);background:#272e31;border: 1px solid #272e31; color:#fed925; }
 /*.header-text-area*/
 
 /*-------------------------------------
@@ -360,6 +360,9 @@ nav.navbar.bootsnav .navbar-toggle i{color: #272e31;}
 }
 .about-list-icon ul li a i {
     margin-left: 6px;
+}
+.about-list-icon ul li a:hover {
+    color: #fed925;
 }
 /*.ab-list-icon */
 
