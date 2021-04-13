@@ -190,7 +190,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #272e31;}
     align-items: center;
     justify-content: center;
     position:relative;
-    background:url(../images/about/yellow_header.png);
+    background:url(../images/about/texture-1.jpg);
     background-size:cover;
     background-position: center;
     height:890px;
@@ -223,13 +223,17 @@ nav.navbar.bootsnav .navbar-toggle i{color: #272e31;}
     font-weight: 700;
 }
 
+.header-text h1:hover {
+    color: #fed925;;
+}
+
 .header-text h1:before {
-    position: relative;
+    position: absolute;
     top: 1.2em;
     height: 0;
     width: 41rem;
     content: '';
-    border-bottom: 1px solid #fed925;
+    /* border-bottom: 1px solid #fed925; */
     padding: 0 0 1.2rem;
 }
 
@@ -241,6 +245,10 @@ nav.navbar.bootsnav .navbar-toggle i{color: #272e31;}
     margin: 4rem 0 2rem;
     letter-spacing: 1px;
     /* padding: 22px 0 0px; */
+}
+
+.header-text h2:hover {
+    color: #fed925;;
 }
 
 .header-text p {
@@ -267,7 +275,12 @@ nav.navbar.bootsnav .navbar-toggle i{color: #272e31;}
     -o-transition: 0.3s linear;
     transition: 0.3s linear;
 }
-.header-text a:hover{ box-shadow: 0 5px 20px rgba(0,0,0,.4);background:#272e31;border: 1px solid #272e31; color:#fed925; }
+.header-text a:hover{
+     box-shadow: 0 5px 20px rgba(0,0,0,.4);
+     background:#fed925;
+     border: 1px solid #fed925;
+     color:#272e31;
+    font-weight: bold; }
 /*.header-text-area*/
 
 /*-------------------------------------
@@ -422,24 +435,47 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
     padding-bottom: 50px;
     border-bottom: 1px solid #e5ebf2;
 }
-
-.section-heading-icons {
+.single-progress-txt {
     display: flex;
-    justify-content: space-evenly;
-    padding-top: 50px;
-    padding-left: 20%;
-    padding-right: 20%;
 }
-
-.tooltip {
-   position: relative;
-   float: right;
+.single-progress-txt h3 {
+    width: 10%;
+    color: #999fb3;
+    position: relative;
+    top: 6px;
+    left: 20px;
 }
-
+.barWrapper {
+    font-weight: 400;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+.progress {
+    border-radius:3px;
+    overflow: visible;
+    background: #272e31;
+    height:8px;
+    margin-top: 15px;
+    width: 85%;
+    margin-bottom: 37px;
+}
+.progress-bar {
+   background: #999fb3;
+    border-radius: 3px;
+   -webkit-transition: width 1.5s ease-in-out;
+   -ms-transition: width 1.5s ease-in-out;
+   -moz-transition: width 1.5s ease-in-out;
+   -o-transition: width 1.5s ease-in-out;
+   transition: width 1.5s ease-in-out;
+}
+.tooltip{
+   position:relative;
+   float:right;
+}
 .tooltip > .tooltip-inner {
    background-color: transparent;
    padding: 1px 5px;
-   color: #b636ff;
+   color: #999fb3;
    font-weight: 500;
    font-size: 12px;
    border-radius: 0;
