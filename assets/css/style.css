@@ -704,7 +704,7 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
     position:absolute;
     height:100%;
     width:100%;
-    background:rgba(31,44,108,.5);
+    background:rgba(0,0,0,.5);
     display:flex;
     align-items:center;
     text-transform: uppercase;
@@ -727,6 +727,22 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
     font-size: 14px;
     text-align: center;
 }
+
+.isotope-overlay > a > h2 {
+    display: inline-block;
+    color: #f1f1f3;
+    font-size: 20px;
+    text-align: center;
+}
+
+.isotope-overlay > a > h3 {
+    display: inline-block;
+    color: #f1f1f3;
+    font-size: 14px;
+    text-align: center;
+    padding: 1em;
+}
+
 .isotope .item:hover .isotope-overlay{
     -webkit-transform:scale(1);
     -moz-transform:scale(1);
