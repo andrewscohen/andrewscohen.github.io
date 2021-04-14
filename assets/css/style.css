@@ -138,7 +138,7 @@ nav.navbar.bootsnav ul.nav > li > a {
     transition: 0.3s linear;
 }
 nav.navbar.bootsnav ul.nav > li > a {padding: 35px 20px;}
-nav.navbar.bootsnav ul.nav > li > a:hover,nav.navbar.bootsnav ul.nav > li > a:focus,nav.navbar.bootsnav ul.nav > li.active>a{color: #fed925;
+nav.navbar.bootsnav ul.nav > li > a:hover,nav.navbar.bootsnav ul.nav > li > a:focus,nav.navbar.bootsnav ul.nav > li.active>a{color: black;
     transition: .5s ease;;}
 
 nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after {
@@ -335,7 +335,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #272e31;}
     opacity: 1;
 }
 
-.overlay {
+/* .overlay {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -350,7 +350,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #272e31;}
 
 .single-about-img:hover .overlay {
     opacity: 0.1;
-}
+} */
 
 .about-list-icon{
     display: flex;
