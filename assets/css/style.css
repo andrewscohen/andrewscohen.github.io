@@ -119,7 +119,6 @@ nav.navbar.bootsnav {
 /*.navbar-brand*/
 .navbar-header a.navbar-brand,.navbar-header a.navbar-brand:hover,.navbar-header a.navbar-brand:focus {
     display: inline-block;
-    /* color: #d92cf9; */
     font-size: 20px;
     font-weight: 600;
     padding: 33px 0px 57px;
@@ -139,7 +138,8 @@ nav.navbar.bootsnav ul.nav > li > a {
     transition: 0.3s linear;
 }
 nav.navbar.bootsnav ul.nav > li > a {padding: 35px 20px;}
-nav.navbar.bootsnav ul.nav > li > a:hover,nav.navbar.bootsnav ul.nav > li > a:focus,nav.navbar.bootsnav ul.nav > li.active>a{color: #6a708e;}
+nav.navbar.bootsnav ul.nav > li > a:hover,nav.navbar.bootsnav ul.nav > li > a:focus,nav.navbar.bootsnav ul.nav > li.active>a{color: #fed925;
+    transition: .5s ease;;}
 
 nav.navbar.bootsnav ul.nav > li.dropdown > a.dropdown-toggle:after {
     content: "";
@@ -223,9 +223,6 @@ nav.navbar.bootsnav .navbar-toggle i{color: #272e31;}
     font-weight: 700;
 }
 
-.header-text h1:hover {
-    color: #fed925;;
-}
 
 .header-text h1:before {
     position: absolute;
@@ -242,13 +239,9 @@ nav.navbar.bootsnav .navbar-toggle i{color: #272e31;}
     font-size: 20px;
     font-weight: 300;
     text-transform: uppercase;
-    margin: 4rem 0 2rem;
+    margin: 1rem 0 2rem;
     letter-spacing: 1px;
     /* padding: 22px 0 0px; */
-}
-
-.header-text h2:hover {
-    color: #fed925;;
 }
 
 .header-text p {
@@ -336,8 +329,27 @@ nav.navbar.bootsnav .navbar-toggle i{color: #272e31;}
 }
 .single-about-img img {
     max-width: 500px;
-    /* height: 468px; */
     object-fit: cover;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    opacity: 1;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 109%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #fed925;
+}
+
+.single-about-img:hover .overlay {
+    opacity: 0.1;
 }
 
 .about-list-icon{
@@ -377,6 +389,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #272e31;}
 }
 .about-list-icon ul li a:hover {
     color: #fed925;
+    transition: .5s ease;
 }
 /*.ab-list-icon */
 
@@ -436,6 +449,7 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
     padding-bottom: 50px;
     border-bottom: 1px solid #e5ebf2;
 }
+
 .single-progress-txt {
     display: flex;
 }
