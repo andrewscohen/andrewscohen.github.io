@@ -412,7 +412,10 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
 /*-------------------------------------
         6.  Skills
 --------------------------------------*/
-.skill-content{padding: 50px 0 80px;}
+.skill-content{
+    padding: 50px 0 80px;
+    border-top: 1px solid #e5ebf2;
+}
 .single-skill-content{padding-top: 100px;}
 .section-heading h2 {
     font-size: 24px;
