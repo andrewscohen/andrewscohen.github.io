@@ -106,6 +106,11 @@
 } /*max-width:991px*/
 
 @media screen and (max-width: 768px) {
+  .single-about-img img {
+    justify-self: center;
+    /* backface-visibility: hidden; */
+    /* opacity: 1; */
+  }
 } /*max-width:768px*/
 
 @media screen and (max-width: 767px) {

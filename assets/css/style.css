@@ -224,15 +224,15 @@ nav.navbar.bootsnav .navbar-toggle i{color: #272e31;}
 }
 
 
-.header-text h1:before {
+/* .header-text h1:before {
     position: absolute;
     top: 1.2em;
     height: 0;
     width: 41rem;
     content: '';
-    /* border-bottom: 1px solid #fed925; */
+    border-bottom: 1px solid #fed925;
     padding: 0 0 1.2rem;
-}
+} */
 
 .header-text h2 {
     color: white;
@@ -315,42 +315,14 @@ nav.navbar.bootsnav .navbar-toggle i{color: #272e31;}
 
 /*.single-about-img */
 .single-about-img{position: relative;box-shadow: 0 5px 20px rgba(14,25,80,.30);}
-.single-about-img:before {
-    position:  absolute;
-    content: " ";
-    top: 0;
-    left:  0;
-    width: 109%;
-    height:  100%;
-    overflow: hidden;
-    max-width: 500px;
-    height: 468px;
-    /* background: rgba(31,44,108,.3); */
-}
+
 .single-about-img img {
-    max-width: 500px;
+    max-width: 100%;
     object-fit: cover;
     transition: .5s ease;
-    backface-visibility: hidden;
-    opacity: 1;
+    /* backface-visibility: hidden; */
+    /* opacity: 1; */
 }
-
-/* .overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 109%;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: #fed925;
-}
-
-.single-about-img:hover .overlay {
-    opacity: 0.1;
-} */
 
 .about-list-icon{
     display: flex;
@@ -359,7 +331,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #272e31;}
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 109%;
+    width: 100%;
     height: 90px;
     background: #272e31;
 }
@@ -440,7 +412,10 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
 /*-------------------------------------
         6.  Skills
 --------------------------------------*/
-.skill-content{padding: 50px 0 80px;}
+.skill-content{
+    padding: 50px 0 80px;
+    border-top: 1px solid #e5ebf2;
+}
 .single-skill-content{padding-top: 100px;}
 .section-heading h2 {
     font-size: 24px;
@@ -512,7 +487,7 @@ span.single-timeline-horizontal.spacial-horizontal-line {width: 88px;}
     border-top: 1px solid #e5ebf2;
 }
 .experience-content {padding-top: 100px;}
-.single-timeline-box {margin-bottom: 75px;}
+.single-timeline-box {margin-bottom: 25px;}
 
 /*experience-time*/
 .experience-time {
