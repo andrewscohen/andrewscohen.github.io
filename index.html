@@ -4,18 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Andrew Cohen — Full Stack Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:ital,wght@0,600;0,700;1,700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0d0d0f;
-      --surface: #16161a;
-      --border: #252530;
-      --accent: #7c6af7;
-      --accent-glow: rgba(124, 106, 247, 0.15);
-      --text: #e8e8f0;
-      --muted: #888899;
-      --tag-bg: #1e1e28;
+      --bg: #151312;
+      --surface: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.08);
+      --accent: #f46c38;
+      --accent-glow: rgba(244, 108, 56, 0.15);
+      --text: #ffffff;
+      --muted: #998f8f;
+      --label: rgba(182, 180, 189, 0.2);
+      --tag-bg: rgba(255, 255, 255, 0.06);
     }
 
     html { scroll-behavior: smooth; }
@@ -29,11 +33,23 @@
       min-height: 100vh;
     }
 
+    /* ── Fade-in animation ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* ── Layout ── */
     .page {
-      max-width: 780px;
+      max-width: 820px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 28px;
     }
 
     /* ── Nav ── */
@@ -41,14 +57,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 28px 0 24px;
+      padding: 32px 0 28px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 72px;
+      margin-bottom: 80px;
     }
 
     .logo {
-      font-size: 15px;
-      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
       letter-spacing: -0.01em;
       color: var(--text);
       text-decoration: none;
@@ -64,15 +81,14 @@
       color: var(--muted);
       text-decoration: none;
       font-size: 14px;
-      transition: color 0.15s;
+      font-weight: 500;
+      transition: color 0.2s;
     }
 
     .nav-links a:hover { color: var(--text); }
 
     /* ── Hero ── */
-    .hero {
-      margin-bottom: 80px;
-    }
+    .hero { margin-bottom: 100px; }
 
     .availability {
       display: inline-flex;
@@ -80,7 +96,8 @@
       gap: 8px;
       font-size: 13px;
       color: var(--muted);
-      margin-bottom: 28px;
+      margin-bottom: 32px;
+      font-weight: 500;
     }
 
     .dot {
@@ -92,26 +109,31 @@
     }
 
     h1 {
-      font-size: clamp(36px, 6vw, 54px);
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(48px, 8vw, 86px);
       font-weight: 700;
       letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 20px;
+      line-height: 1.05;
+      margin-bottom: 24px;
     }
 
-    h1 span { color: var(--accent); }
+    h1 span {
+      color: var(--muted);
+      font-style: italic;
+    }
 
     .hero-desc {
       font-size: 17px;
       color: var(--muted);
-      max-width: 520px;
-      margin-bottom: 36px;
-      line-height: 1.65;
+      margin-bottom: 40px;
+      line-height: 1.7;
+      max-width: 560px;
+      font-weight: 400;
     }
 
     .cta-row {
       display: flex;
-      gap: 12px;
+      gap: 14px;
       flex-wrap: wrap;
     }
 
@@ -119,12 +141,12 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 11px 22px;
-      border-radius: 8px;
+      padding: 12px 26px;
+      border-radius: 10px;
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 600;
       text-decoration: none;
-      transition: all 0.15s;
+      transition: all 0.2s;
       cursor: pointer;
       border: none;
     }
@@ -135,8 +157,8 @@
     }
 
     .btn-primary:hover {
-      background: #9080f9;
-      box-shadow: 0 0 24px var(--accent-glow);
+      background: #f77e50;
+      box-shadow: 0 0 30px var(--accent-glow);
     }
 
     .btn-ghost {
@@ -145,20 +167,21 @@
       border: 1px solid var(--border);
     }
 
-    .btn-ghost:hover { color: var(--text); border-color: #3a3a50; }
+    .btn-ghost:hover { color: var(--text); border-color: rgba(255, 255, 255, 0.2); }
 
     /* ── Section headings ── */
     .section-label {
-      font-size: 11px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 24px;
+      color: var(--text);
+      margin-bottom: 28px;
     }
 
     /* ── Skills ── */
-    .skills { margin-bottom: 80px; }
+    .skills { margin-bottom: 100px; }
 
     .skill-groups {
       display: grid;
@@ -169,15 +192,21 @@
     .skill-group {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
+      border-radius: 14px;
+      padding: 22px;
+      transition: border-color 0.2s;
+    }
+
+    .skill-group:hover {
+      border-color: rgba(255, 255, 255, 0.15);
     }
 
     .skill-group h3 {
+      font-family: 'Poppins', sans-serif;
       font-size: 13px;
       font-weight: 600;
       color: var(--muted);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .tags {
@@ -188,22 +217,24 @@
 
     .tag {
       font-size: 12px;
-      padding: 4px 10px;
+      padding: 5px 12px;
       background: var(--tag-bg);
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: 8px;
       color: var(--text);
+      font-weight: 500;
+      transition: border-color 0.2s, color 0.2s;
     }
 
     /* ── Projects ── */
-    .projects { margin-bottom: 80px; }
+    .projects { margin-bottom: 100px; }
 
     .section-intro {
       font-size: 14px;
       color: var(--muted);
-      margin-top: -16px;
-      margin-bottom: 28px;
-      line-height: 1.6;
+      margin-top: -18px;
+      margin-bottom: 32px;
+      line-height: 1.7;
     }
 
     .design-dev-badge {
@@ -213,9 +244,9 @@
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.05em;
-      color: var(--accent);
-      background: var(--accent-glow);
-      border: 1px solid rgba(124, 106, 247, 0.3);
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
       border-radius: 20px;
       padding: 3px 10px;
       margin-bottom: 4px;
@@ -224,23 +255,22 @@
     .project-list {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 28px;
     }
 
     .project-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 16px;
       overflow: hidden;
       text-decoration: none;
       display: flex;
       flex-direction: column;
-      transition: border-color 0.15s, box-shadow 0.15s;
+      transition: border-color 0.2s, box-shadow 0.3s;
     }
 
     .project-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 0 28px var(--accent-glow);
+      border-color: rgba(255, 255, 255, 0.15);
     }
 
     .project-img {
@@ -253,22 +283,23 @@
     }
 
     .project-body {
-      padding: 24px;
+      padding: 26px;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
     .project-card h3 {
-      font-size: 16px;
-      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
       color: var(--text);
     }
 
     .project-tagline {
-      font-size: 13px;
-      color: var(--text);
-      line-height: 1.6;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.7;
       font-style: italic;
     }
 
@@ -307,20 +338,21 @@
       font-size: 11px;
       padding: 3px 8px;
       background: var(--tag-bg);
-      border-radius: 4px;
+      border-radius: 6px;
       color: var(--muted);
+      font-weight: 500;
     }
 
     /* ── Experience ── */
-    .experience { margin-bottom: 80px; }
+    .experience { margin-bottom: 100px; }
 
     .exp-list { display: flex; flex-direction: column; gap: 0; }
 
     .exp-item {
       display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 24px;
-      padding: 24px 0;
+      grid-template-columns: 130px 1fr;
+      gap: 28px;
+      padding: 28px 0;
       border-bottom: 1px solid var(--border);
     }
 
@@ -329,12 +361,18 @@
     .exp-date {
       font-size: 12px;
       color: var(--muted);
-      padding-top: 2px;
+      padding-top: 3px;
+      font-weight: 500;
     }
 
-    .exp-role { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+    .exp-role {
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
 
-    .exp-company { font-size: 13px; color: var(--accent); margin-bottom: 8px; }
+    .exp-company { font-size: 13px; color: var(--muted); margin-bottom: 10px; font-weight: 500; }
 
     .exp-bullets {
       list-style: none;
@@ -361,14 +399,14 @@
     }
 
     /* ── Before the Code ── */
-    .before-code { margin-bottom: 80px; }
+    .before-code { margin-bottom: 100px; }
 
     .before-code-intro {
-      font-size: 15px;
+      font-size: 16px;
       color: var(--muted);
-      line-height: 1.7;
-      max-width: 620px;
-      margin-bottom: 32px;
+      line-height: 1.75;
+      max-width: 640px;
+      margin-bottom: 36px;
     }
 
     .before-code-intro strong {
@@ -379,16 +417,21 @@
     .event-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 14px;
     }
 
     .event-card {
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
       position: relative;
       background: var(--surface);
       border: 1px solid var(--border);
       cursor: default;
+      transition: border-color 0.2s;
+    }
+
+    .event-card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
     }
 
     .event-card.wide {
@@ -429,7 +472,7 @@
     }
 
     .event-caption {
-      padding: 12px 16px;
+      padding: 14px 18px;
       font-size: 12px;
       color: var(--muted);
       border-top: 1px solid var(--border);
@@ -439,32 +482,34 @@
     .event-caption strong {
       color: var(--text);
       display: block;
+      font-family: 'Poppins', sans-serif;
       font-size: 13px;
       font-weight: 600;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
 
     /* ── Contact ── */
     .contact {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px;
+      border-radius: 18px;
+      padding: 48px 40px;
       text-align: center;
       margin-bottom: 60px;
     }
 
     .contact h2 {
-      font-size: 26px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 30px;
       font-weight: 700;
       letter-spacing: -0.02em;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .contact p {
       color: var(--muted);
       font-size: 15px;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
     .social-links {
@@ -486,7 +531,7 @@
       bottom: calc(100% + 8px);
       left: 50%;
       transform: translateX(-50%) translateY(4px);
-      background: #2a2a3a;
+      background: #2a2420;
       color: var(--text);
       font-size: 12px;
       white-space: nowrap;
@@ -505,8 +550,8 @@
     }
 
     .tag[data-tip]:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: var(--text);
     }
 
     .easter-egg[data-tip]:hover {
@@ -516,7 +561,7 @@
     /* ── Footer ── */
     footer {
       border-top: 1px solid var(--border);
-      padding: 24px 0;
+      padding: 28px 0;
       text-align: center;
       font-size: 13px;
       color: var(--muted);
@@ -531,30 +576,31 @@
     <nav>
       <a class="logo" href="#">Andrew Cohen</a>
       <ul class="nav-links">
-        <li><a href="#projects">Work</a></li>
+        <li><a href="#skills">Skills</a></li>
         <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
 
     <!-- Hero -->
-    <section class="hero">
+    <section class="hero fade-in visible">
       <div class="availability">
         <span class="dot"></span>
         Open to new opportunities
       </div>
-      <h1>Full-Stack Engineer.<br><span>UX Focused.</span></h1>
+      <h1>Full-Stack<br><span>Engineer.</span></h1>
       <p class="hero-desc">
-        Building performant, polished web experiences. Currently at Under Armour, previously at MapMyFitness (Under Armour). Next.js, React, TypeScript — with a sharp eye for design.
+        Building performant, polished web experiences with grit and grace.
       </p>
       <div class="cta-row">
         <a class="btn btn-primary" href="mailto:andrewcohen14@gmail.com">Get in touch</a>
-        <a class="btn btn-ghost" href="#projects">View work</a>
+        <a class="btn btn-ghost" href="#projects">View projects</a>
       </div>
     </section>
 
     <!-- Skills -->
-    <section class="skills" id="skills">
+    <section class="skills fade-in" id="skills">
       <p class="section-label">Skills</p>
       <div class="skill-groups">
         <div class="skill-group">
@@ -595,7 +641,7 @@
         <div class="skill-group">
           <h3>AI &amp; Tooling</h3>
           <div class="tags">
-            <span class="tag" data-tip="helped build this very page 👀">Claude Code</span>
+            <span class="tag">Claude Code</span>
             <span class="tag">GitHub Copilot</span>
             <span class="tag">Warp AI</span>
             <span class="tag">React Testing Library</span>
@@ -605,7 +651,7 @@
     </section>
 
     <!-- Experience -->
-    <section class="experience" id="experience">
+    <section class="experience fade-in" id="experience">
       <p class="section-label">Experience</p>
       <div class="exp-list">
         <div class="exp-item">
@@ -663,7 +709,7 @@
     </section>
 
     <!-- Projects -->
-    <section class="projects" id="projects">
+    <section class="projects fade-in" id="projects">
       <p class="section-label">Design &amp; Development</p>
       <p class="section-intro">Full ownership of UX/UI design and engineering on each project, built during App Academy (2020–2021).</p>
       <div class="project-list">
@@ -730,7 +776,7 @@
     </section>
 
     <!-- Before the Code -->
-    <section class="before-code" id="before-the-code">
+    <section class="before-code fade-in" id="before-the-code">
       <p class="section-label">Before the Code</p>
       <p class="before-code-intro">
         The eye for experience didn't start with a text editor. Before writing a line of code,
@@ -782,7 +828,7 @@
     </section>
 
     <!-- Contact -->
-    <section class="contact" id="contact">
+    <section class="contact fade-in" id="contact">
       <h2>Let's build something.</h2>
       <p>Open to full-time roles, contracts, and interesting side projects.<br>
         <small style="color:var(--muted);font-size:13px;">andrewcohen14@gmail.com &nbsp;·&nbsp; 443-622-1902</small>
@@ -799,5 +845,17 @@
     </footer>
 
   </div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
