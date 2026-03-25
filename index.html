@@ -360,6 +360,90 @@
       top: 2px;
     }
 
+    /* ── Before the Code ── */
+    .before-code { margin-bottom: 80px; }
+
+    .before-code-intro {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 620px;
+      margin-bottom: 32px;
+    }
+
+    .before-code-intro strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .event-card {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      cursor: default;
+    }
+
+    .event-card.wide {
+      grid-column: span 2;
+    }
+
+    .event-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .event-card img {
+      width: 100%;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .event-card:hover img {
+      transform: scale(1.02);
+    }
+
+    .event-img-stack {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .event-img-stack img {
+      flex: 1;
+      min-height: 0;
+      object-fit: cover;
+      border-bottom: 2px solid var(--bg);
+    }
+
+    .event-img-stack img:last-child {
+      border-bottom: none;
+    }
+
+    .event-caption {
+      padding: 12px 16px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      line-height: 1.5;
+    }
+
+    .event-caption strong {
+      color: var(--text);
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
     /* ── Contact ── */
     .contact {
       background: var(--surface);
@@ -640,6 +724,58 @@
             <div class="project-stack">
               <span>JavaScript</span><span>Pug</span><span>CSS</span><span>Express</span><span>PostgreSQL</span>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Before the Code -->
+    <section class="before-code" id="before-the-code">
+      <p class="section-label">Before the Code</p>
+      <p class="before-code-intro">
+        The eye for experience didn't start with a text editor. Before writing a line of code,
+        I spent a decade <strong>designing and producing large-scale events</strong> — concepting spaces,
+        managing production, and sweating every detail from floorplan to finish. That same instinct
+        for how things <em>feel</em> to the people inside them is what I bring to every interface I build.
+      </p>
+      <div class="event-grid">
+        <div class="event-card wide">
+          <img src="AC PORTFOLIO DECK.png" alt="Firefly Festival — Mason Bar & Red Bull Artist Lodge" />
+          <div class="event-caption">
+            <strong>Firefly Music Festival · Mason Bar</strong>
+            Festival decor design and Red Bull Artist Lodge concept rendering
+          </div>
+        </div>
+        <div class="event-card">
+          <img src="AC PORTFOLIO DECK-2.png" alt="Firefly Festival Highlights 2016–2019" />
+          <div class="event-caption">
+            <strong>Firefly Music Festival · 2016–2019</strong>
+            Festival decor highlights across four seasons
+          </div>
+        </div>
+        <div class="event-card">
+          <img src="AC PORTFOLIO DECK-3.png" alt="Le Dîner en Blanc Baltimore 2017" />
+          <div class="event-caption">
+            <strong>Le Dîner en Blanc · Baltimore 2017</strong>
+            Decor design &amp; full production management
+          </div>
+        </div>
+        <div class="event-card">
+          <img src="IMG_6178.jpeg" alt="Jack Daniel's Single Barrel Live Wall Installation" />
+          <div class="event-caption">
+            <strong>Jack Daniel's Single Barrel</strong>
+            Full design &amp; fabrication of a custom trade show booth featuring a traveling living wall, tasting, and education areas — touring nationally on the Bar Institute Tour
+          </div>
+        </div>
+        <div class="event-card">
+          <div class="event-img-stack">
+            <img src="https://eventrevolution.com/wp-content/uploads/2018/07/Gentleman-Jack-Motor-House-Banner-Image.jpg" alt="Gentleman Jack Motor House overview" />
+            <img src="https://eventrevolution.com/wp-content/uploads/2018/07/Gentleman-Jack-marquee-letters-custom-signage-drop-in-table-660x440.jpg" alt="Gentleman Jack custom signage and marquee letters" />
+            <img src="Gentleman-Jack-6.jpg" alt="Gentleman Jack Motor House event" />
+          </div>
+          <div class="event-caption">
+            <strong>Gentleman Jack · The Motor House, Baltimore</strong>
+            Transformed an empty warehouse into a graffiti-filled, punk-themed brand experience — custom decor, signage, lighting &amp; full production
           </div>
         </div>
       </div>
