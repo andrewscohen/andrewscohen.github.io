@@ -1,0 +1,7 @@
+# Everything on this site remains crawlable except the path below.
+# /ashling-concept/ is an unaffiliated concept redesign of a real
+# business's website. It reproduces that business's real name, address
+# and phone number for illustration, so it is kept out of search results
+# to avoid being mistaken for their official site.
+User-agent: *
+Disallow: /ashling-concept/

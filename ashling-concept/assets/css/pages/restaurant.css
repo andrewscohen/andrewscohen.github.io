@@ -1,0 +1,208 @@
+.restaurant-hero .hero-title {
+  max-width: 10ch;
+}
+
+.restaurant-hero .hero-media img {
+  object-position: 50% 56%;
+}
+
+.restaurant-story .story-image {
+  object-position: 50% 54%;
+}
+
+.restaurant-menus {
+  overflow: hidden;
+}
+
+.restaurant-menus::before {
+  position: absolute;
+  top: 18%;
+  right: 8%;
+  width: 1px;
+  height: 64%;
+  transform: rotate(18deg);
+  background: var(--color-red);
+  content: "";
+}
+
+.restaurant-menu-list {
+  position: relative;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.restaurant-menu-item {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-md);
+  min-height: 9rem;
+  padding-block: var(--space-md);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.restaurant-menu-number {
+  color: var(--color-red);
+  font-family: var(--font-poster);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+}
+
+.restaurant-menu-item h3 {
+  max-width: 18ch;
+  font-size: var(--step-2);
+}
+
+.restaurant-menu-link {
+  color: color-mix(in srgb, var(--color-white) 62%, transparent);
+  font-family: var(--font-poster);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color var(--transition-fast);
+}
+
+.restaurant-menu-link:hover {
+  color: var(--color-white);
+}
+
+.restaurant-live-interlude .parallax-media img {
+  object-position: center 42%;
+}
+
+.restaurant-live-interlude .eyebrow {
+  justify-content: center;
+}
+
+.restaurant-live {
+  overflow: hidden;
+}
+
+.restaurant-live::after {
+  position: absolute;
+  right: -5rem;
+  bottom: -4rem;
+  width: 18rem;
+  height: 28rem;
+  transform: rotate(27deg);
+  border: 1px solid color-mix(in srgb, var(--color-white) 24%, transparent);
+  content: "";
+}
+
+.restaurant-live-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(20rem, 0.75fr);
+  align-items: center;
+  gap: clamp(4rem, 11vw, 11rem);
+}
+
+.restaurant-live-copy {
+  --flow-space: var(--space-md);
+}
+
+.restaurant-live-copy h2 {
+  max-width: 9ch;
+}
+
+.restaurant-live-copy .eyebrow {
+  color: var(--color-cream);
+}
+
+.restaurant-live-lead {
+  max-width: var(--measure);
+  font-size: var(--step-1);
+}
+
+.restaurant-live-copy > p:not(.eyebrow, .restaurant-live-lead) {
+  max-width: var(--measure);
+  color: color-mix(in srgb, var(--color-white) 74%, transparent);
+}
+
+.restaurant-live-detail {
+  padding-left: var(--space-md);
+  border-left: 1px solid var(--color-cream);
+}
+
+.restaurant-programme {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid color-mix(in srgb, var(--color-white) 42%, transparent);
+}
+
+.restaurant-programme-row {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: var(--space-md);
+  padding-block: var(--space-md);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-white) 42%, transparent);
+}
+
+.restaurant-programme-row > span {
+  color: var(--color-cream);
+  font-family: var(--font-poster);
+  font-size: var(--step--1);
+  letter-spacing: 0.18em;
+}
+
+.restaurant-programme-row p {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  line-height: 1.25;
+}
+
+.restaurant-visit {
+  background:
+    linear-gradient(90deg, transparent 0 73%, color-mix(in srgb, var(--color-red) 6%, transparent) 73% 100%),
+    var(--color-ink);
+}
+
+.restaurant-closing .eyebrow {
+  justify-content: center;
+  color: var(--color-cream);
+}
+
+@media (max-width: 52rem) {
+  .restaurant-live-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .restaurant-programme {
+    max-width: 38rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  .restaurant-menus,
+  .restaurant-live {
+    min-height: auto;
+    padding-block: var(--space-3xl);
+  }
+
+  .restaurant-menus::before,
+  .restaurant-live::after {
+    display: none;
+  }
+
+  .restaurant-menu-item {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    min-height: auto;
+    padding-block: var(--space-md);
+  }
+
+  .restaurant-menu-link {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 32rem) {
+  .restaurant-menu-item h3 {
+    font-size: var(--step-1);
+  }
+
+  .restaurant-programme-row {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: var(--space-sm);
+  }
+}

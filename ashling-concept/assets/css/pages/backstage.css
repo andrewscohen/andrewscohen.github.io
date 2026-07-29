@@ -1,0 +1,321 @@
+/* Backstage page: spacious production hospitality story */
+.backstage-hero .hero-media img {
+  object-position: center 42%;
+}
+
+.backstage-hero .hero-overlay {
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--color-ink) 96%, transparent) 0%, color-mix(in srgb, var(--color-ink) 74%, transparent) 52%, color-mix(in srgb, var(--color-ink) 28%, transparent) 84%),
+    linear-gradient(0deg, var(--color-ink) 0%, transparent 42%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-red-deep) 28%, transparent), transparent 38%);
+}
+
+.backstage-hero .hero-content {
+  max-width: 76rem;
+}
+
+.backstage-hero .hero-title {
+  max-width: 8.2ch;
+}
+
+.backstage-hero .hero-copy {
+  max-width: 36rem;
+}
+
+/* Page-opening editorial pause */
+.backstage-opening {
+  min-height: 125svh;
+  display: grid;
+  align-items: center;
+  padding-block: var(--space-2xl);
+}
+
+.backstage-opening .editorial-intro {
+  margin-bottom: 0;
+}
+
+.backstage-opening .editorial-title {
+  max-width: 11ch;
+}
+
+.backstage-opening-action {
+  margin-top: var(--space-lg);
+}
+
+/* Production service and operating principles */
+.backstage-experiences {
+  padding-bottom: var(--space-3xl);
+}
+
+.backstage-service-image {
+  object-position: center;
+}
+
+.backstage-trust-image {
+  object-position: center;
+}
+
+.production-manifest {
+  margin-top: var(--space-lg);
+  border-top: 1px solid var(--color-red);
+}
+
+.production-manifest-row {
+  display: grid;
+  grid-template-columns: 4.75rem minmax(0, 1fr);
+  gap: var(--space-sm);
+  padding-block: var(--space-sm);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.production-manifest-row dt,
+.backstage-principle-number {
+  color: var(--color-red);
+  font-family: var(--font-poster);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.production-manifest-row dd {
+  color: color-mix(in srgb, var(--color-white) 68%, transparent);
+  font-size: var(--step--1);
+}
+
+.backstage-principles {
+  display: grid;
+  margin-top: var(--space-lg);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.backstage-principle {
+  display: grid;
+  grid-template-columns: 4.75rem minmax(0, 1fr);
+  gap: var(--space-sm);
+  align-items: center;
+  padding-block: var(--space-sm);
+  border-bottom: 1px solid var(--border-subtle);
+  font-family: var(--font-poster);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Second and final pinned image moment */
+.backstage-interlude .parallax-media img {
+  object-position: center 38%;
+}
+
+.backstage-interlude .parallax-break-overlay {
+  background:
+    linear-gradient(color-mix(in srgb, var(--color-ink) 48%, transparent), color-mix(in srgb, var(--color-ink) 78%, transparent)),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-red-deep) 24%, transparent), transparent 62%);
+}
+
+.backstage-interlude .eyebrow {
+  justify-content: center;
+}
+
+.backstage-interlude .parallax-break-title {
+  max-width: 11ch;
+}
+
+/* Backstage origin */
+.backstage-origin-image {
+  object-position: center;
+}
+
+.backstage-origin .story-frame {
+  max-width: 15rem;
+}
+
+/* Production-manager enquiry */
+.production-enquiry {
+  overflow: hidden;
+  background:
+    linear-gradient(118deg, var(--color-red-deep) 0 56%, color-mix(in srgb, var(--color-ink) 30%, var(--color-red-deep)) 56% 100%);
+}
+
+.production-enquiry::before {
+  position: absolute;
+  top: var(--space-xl);
+  right: -2rem;
+  width: 36%;
+  height: 1px;
+  transform: rotate(-4deg);
+  background: color-mix(in srgb, var(--color-white) 28%, transparent);
+  content: "";
+}
+
+.production-enquiry-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(30rem, 1.18fr);
+  align-items: start;
+  gap: clamp(var(--space-lg), 8vw, var(--space-3xl));
+}
+
+.production-enquiry-copy h2 {
+  max-width: 8ch;
+  margin-top: var(--space-md);
+}
+
+.production-enquiry-copy > p:not(.eyebrow) {
+  max-width: var(--measure);
+  margin-top: var(--space-lg);
+  color: color-mix(in srgb, var(--color-white) 74%, transparent);
+}
+
+.production-enquiry .eyebrow,
+.production-enquiry .contact-label {
+  color: var(--color-white);
+}
+
+.production-enquiry .contact-list {
+  padding-top: var(--space-md);
+  border-top: 1px solid color-mix(in srgb, var(--color-white) 28%, transparent);
+}
+
+.production-enquiry .contact-list > * {
+  color: color-mix(in srgb, var(--color-white) 78%, transparent);
+}
+
+.production-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+  padding: clamp(var(--space-md), 4vw, var(--space-lg));
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.production-form-field {
+  min-width: 0;
+}
+
+.production-form-field--wide {
+  grid-column: 1 / -1;
+}
+
+.production-form label {
+  display: block;
+  margin-bottom: var(--space-2xs);
+  color: var(--color-white);
+  font-family: var(--font-poster);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.production-form label span {
+  color: color-mix(in srgb, var(--color-white) 48%, transparent);
+  font-size: 0.85em;
+}
+
+.production-form input,
+.production-form select,
+.production-form textarea {
+  width: 100%;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  padding: var(--space-xs) var(--space-sm);
+  color: var(--color-white);
+  background: var(--color-ink);
+}
+
+.production-form input,
+.production-form select {
+  min-height: 3.4rem;
+}
+
+.production-form textarea {
+  resize: vertical;
+}
+
+.production-form input::placeholder,
+.production-form textarea::placeholder {
+  color: color-mix(in srgb, var(--color-white) 48%, transparent);
+}
+
+.production-form-submit {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.production-form-submit p {
+  color: color-mix(in srgb, var(--color-white) 62%, transparent);
+  font-size: var(--step--1);
+  line-height: 1.5;
+}
+
+@media (max-width: 64rem) {
+  .production-enquiry-grid {
+    grid-template-columns: minmax(0, 0.72fr) minmax(26rem, 1.28fr);
+  }
+}
+
+@media (max-width: 52rem) {
+  .production-enquiry-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .production-enquiry-copy {
+    max-width: var(--measure);
+  }
+
+  .production-enquiry {
+    background: var(--color-red-deep);
+  }
+}
+
+@media (max-width: 48rem) {
+  .backstage-opening {
+    min-height: auto;
+    padding-block: var(--space-3xl);
+  }
+
+  .backstage-opening .editorial-intro {
+    margin-left: 0;
+  }
+
+  .backstage-experiences .experience {
+    padding-block: var(--space-3xl);
+  }
+}
+
+@media (max-width: 45rem) {
+  .backstage-hero .hero-media img {
+    object-position: 62% center;
+  }
+
+  .backstage-hero .hero-title {
+    max-width: 7.4ch;
+  }
+
+  .production-manifest-row,
+  .backstage-principle {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+  }
+
+  .production-form {
+    grid-template-columns: 1fr;
+  }
+
+  .production-form-field--wide {
+    grid-column: auto;
+  }
+
+  .production-form-submit {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .production-form-submit .btn {
+    width: 100%;
+  }
+}

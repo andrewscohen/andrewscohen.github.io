@@ -1,0 +1,18 @@
+/*
+ * House photography grade — the single source of truth for image treatment.
+ * Tier 1 stays restrained enough for inline photography, including monochrome
+ * images. Filters stay on the image so container transforms remain independent.
+ */
+main img {
+  background-color: var(--color-ink);
+  filter: saturate(0.84) sepia(0.06) hue-rotate(342deg) contrast(1.06) brightness(0.94);
+}
+
+/*
+ * Tier 2: full-bleed hero and pinned photographs get one shared, slightly
+ * denser variant so highlights and mixed stock lighting stay in the dark mood.
+ */
+main .hero-media img,
+main .parallax-media img {
+  filter: saturate(0.82) sepia(0.06) hue-rotate(342deg) contrast(1.08) brightness(0.9);
+}

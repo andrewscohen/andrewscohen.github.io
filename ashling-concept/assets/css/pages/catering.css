@@ -1,0 +1,528 @@
+.catering-hero .hero-media img {
+  object-position: 50% 58%;
+}
+
+.catering-hero .hero-title {
+  max-width: 8.5ch;
+}
+
+.catering-statement {
+  min-height: 125svh;
+  display: flex;
+  align-items: center;
+  padding-block: var(--space-2xl);
+}
+
+.catering-statement .editorial-intro {
+  margin-bottom: 0;
+}
+
+.catering-statement .editorial-title {
+  max-width: 11ch;
+  font-size: var(--step-5);
+}
+
+.service-section {
+  overflow: hidden;
+}
+
+.service-section .section-heading {
+  max-width: 76rem;
+}
+
+.service-section .section-heading-title {
+  max-width: 11ch;
+}
+
+.service-ways {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.service-way {
+  min-height: 52svh;
+  display: grid;
+  grid-template-columns: minmax(4.5rem, 0.25fr) minmax(18rem, 1fr) minmax(12rem, 0.55fr);
+  align-items: center;
+  gap: var(--space-lg);
+  padding-block: var(--space-xl);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.service-number,
+.menu-number {
+  color: var(--color-red);
+  font-family: var(--font-poster);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1;
+}
+
+.service-way h3 {
+  max-width: 10ch;
+  font-size: var(--step-3);
+}
+
+.service-way div > p {
+  max-width: 32rem;
+  margin-top: var(--space-md);
+  color: color-mix(in srgb, var(--color-white) 68%, transparent);
+}
+
+.service-action {
+  justify-self: end;
+}
+
+.menu-section {
+  overflow: hidden;
+}
+
+.menu-section .editorial-title {
+  max-width: 10ch;
+}
+
+.menu-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--border-dark);
+  border-left: 1px solid var(--border-dark);
+}
+
+.menu-item {
+  min-height: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(var(--space-md), 5vw, var(--space-xl));
+  border-right: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.menu-number {
+  color: var(--color-red-deep);
+}
+
+.menu-item h3 {
+  max-width: 13ch;
+  margin-top: var(--space-xl);
+  font-size: var(--step-3);
+}
+
+.menu-item > p {
+  max-width: 29rem;
+  margin-top: var(--space-lg);
+  color: color-mix(in srgb, var(--color-ink) 68%, transparent);
+}
+
+.catering-interlude .parallax-media img {
+  object-position: center 55%;
+}
+
+.catering-interlude .parallax-break-title {
+  max-width: 12ch;
+}
+
+.wedding-section {
+  overflow: hidden;
+}
+
+.wedding-section::before {
+  position: absolute;
+  top: 10%;
+  right: -3rem;
+  width: 0.65rem;
+  height: 42rem;
+  transform: rotate(28deg);
+  background: var(--color-red);
+  box-shadow: -2.6rem 3.5rem 0 color-mix(in srgb, var(--color-ink) 26%, transparent);
+  content: "";
+}
+
+.wedding-grid {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.82fr) minmax(0, 1.18fr);
+  align-items: center;
+  gap: clamp(var(--space-lg), 10vw, var(--space-3xl));
+}
+
+.wedding-media {
+  position: relative;
+  max-width: 39rem;
+  padding: 0 0 var(--space-lg) var(--space-lg);
+}
+
+.wedding-media::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 72%;
+  height: 68%;
+  border: 0.25rem solid var(--color-ink);
+  content: "";
+}
+
+.wedding-media img {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  box-shadow: var(--shadow-soft);
+}
+
+.wedding-frame {
+  position: absolute;
+  right: -1rem;
+  bottom: 1rem;
+  max-width: 14rem;
+  padding: var(--space-sm);
+  color: var(--color-white);
+  background: var(--color-ink);
+  font-family: var(--font-poster);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.wedding-copy {
+  --flow-space: var(--space-md);
+  position: relative;
+}
+
+.wedding-copy .eyebrow {
+  color: var(--color-white);
+}
+
+.wedding-copy h2 {
+  max-width: 10ch;
+}
+
+.wedding-lead {
+  max-width: var(--measure);
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.25;
+}
+
+.wedding-copy > p:not(.eyebrow, .wedding-lead) {
+  max-width: var(--measure);
+  color: color-mix(in srgb, var(--color-white) 76%, transparent);
+}
+
+.wedding-link::after {
+  background: var(--color-white);
+}
+
+.faq-layout {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.72fr) minmax(0, 1.28fr);
+  align-items: start;
+  gap: clamp(var(--space-lg), 10vw, var(--space-3xl));
+}
+
+.faq-heading {
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-lg));
+  margin-bottom: 0;
+}
+
+.faq-heading .section-heading-title {
+  max-width: 9ch;
+}
+
+.faq-list {
+  align-self: start;
+}
+
+.faq-answer {
+  color: color-mix(in srgb, var(--color-ink) 70%, transparent);
+}
+
+.enquiry-section {
+  overflow: hidden;
+  background:
+    linear-gradient(118deg, transparent 58%, color-mix(in srgb, var(--color-red-deep) 22%, transparent) 58%),
+    var(--color-ink);
+}
+
+.enquiry-section .editorial-title {
+  max-width: 10ch;
+}
+
+.enquiry-routes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: var(--space-xl);
+  border-top: 1px solid var(--border-subtle);
+  border-left: 1px solid var(--border-subtle);
+}
+
+.enquiry-route {
+  min-height: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border-right: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+  text-decoration: none;
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.enquiry-route:hover,
+.enquiry-route:focus-visible {
+  background: var(--color-red-deep);
+}
+
+.enquiry-route-label {
+  color: var(--color-red);
+  font-family: var(--font-poster);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.enquiry-route:hover .enquiry-route-label,
+.enquiry-route:focus-visible .enquiry-route-label {
+  color: var(--color-white);
+}
+
+.enquiry-route strong {
+  max-width: 11ch;
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.enquiry-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(19rem, 0.65fr);
+  align-items: start;
+  gap: var(--space-md);
+}
+
+.enquiry-form,
+.office-panel {
+  border-top: 1px solid var(--color-red);
+  background: var(--color-surface);
+}
+
+.enquiry-form {
+  padding: clamp(var(--space-md), 5vw, var(--space-xl));
+}
+
+.form-heading {
+  margin-bottom: var(--space-lg);
+}
+
+.form-heading h3 {
+  max-width: 10ch;
+  margin-top: var(--space-sm);
+  font-size: var(--step-3);
+}
+
+.form-heading > p:last-child {
+  margin-top: var(--space-sm);
+  color: color-mix(in srgb, var(--color-white) 62%, transparent);
+  font-size: var(--step--1);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.form-field {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.form-field--wide {
+  grid-column: 1 / -1;
+}
+
+.form-field label {
+  font-family: var(--font-poster);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.field-optional {
+  color: color-mix(in srgb, var(--color-white) 55%, transparent);
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  color: var(--color-white);
+  background: var(--color-ink);
+}
+
+.form-field input,
+.form-field select {
+  min-height: 3.5rem;
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.form-field textarea {
+  min-height: 12rem;
+  padding: var(--space-sm);
+  resize: vertical;
+}
+
+.form-field input:hover,
+.form-field select:hover,
+.form-field textarea:hover {
+  border-color: var(--color-muted);
+}
+
+.form-field small {
+  color: color-mix(in srgb, var(--color-white) 62%, transparent);
+  line-height: 1.5;
+}
+
+.office-panel {
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-lg));
+  padding: clamp(var(--space-md), 4vw, var(--space-lg));
+}
+
+.office-kicker {
+  color: var(--color-red);
+  font-family: var(--font-poster);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.office-panel h3 {
+  max-width: 12ch;
+  margin-top: var(--space-sm);
+  font-size: var(--step-2);
+}
+
+.office-panel > p:nth-of-type(2) {
+  margin-top: var(--space-md);
+  color: color-mix(in srgb, var(--color-white) 70%, transparent);
+}
+
+@media (max-width: 64rem) {
+  .service-way {
+    grid-template-columns: minmax(3rem, 0.15fr) 1fr;
+  }
+
+  .service-action {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .faq-layout,
+  .enquiry-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-heading,
+  .office-panel {
+    position: static;
+  }
+
+  .office-panel {
+    max-width: 38rem;
+  }
+}
+
+@media (max-width: 52rem) {
+  .wedding-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wedding-media {
+    max-width: 34rem;
+  }
+
+  .wedding-copy {
+    max-width: 46rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  .catering-statement {
+    min-height: auto;
+    padding-block: var(--space-3xl);
+  }
+
+  .catering-statement .editorial-intro {
+    margin-left: 0;
+  }
+
+  .service-way {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    padding-block: var(--space-2xl);
+  }
+
+  .service-action {
+    grid-column: auto;
+  }
+
+  .menu-list,
+  .enquiry-routes {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-item {
+    min-height: 27rem;
+  }
+
+  .enquiry-route {
+    min-height: 12rem;
+  }
+}
+
+@media (max-width: 35rem) {
+  .catering-hero .hero-media img {
+    object-position: 63% 50%;
+  }
+
+  .menu-item {
+    min-height: 24rem;
+    padding: var(--space-md);
+  }
+
+  .wedding-media {
+    padding: 0 0 var(--space-sm) var(--space-sm);
+  }
+
+  .wedding-frame {
+    right: -0.25rem;
+    max-width: 11rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-field--wide {
+    grid-column: auto;
+  }
+}

@@ -1,0 +1,65 @@
+:root {
+  /* Locked Ashling palette */
+  --color-ink: #000000;
+  --color-surface: #111111;
+  --color-red: #ed1d24;
+  --color-red-deep: #a40d12;
+  --color-cream: #eee8d8;
+  --color-white: #ffffff;
+  --color-muted: #696969;
+
+  /* Type families */
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-poster: "Oswald", "Arial Narrow", Arial, sans-serif;
+  --font-body: "Raleway", Arial, sans-serif;
+  --font-script: "Sacramento", "Brush Script MT", cursive;
+
+  /* Editorial layout */
+  --wrap: 88rem;
+  --measure: 37rem;
+  --gutter: clamp(1.25rem, 4vw, 4.5rem);
+  --radius: 0.125rem;
+  --header-height: 6rem;
+
+  /* Spacing scale */
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1.25rem;
+  --space-md: 2rem;
+  --space-lg: clamp(2.75rem, 5vw, 5rem);
+  --space-xl: clamp(4.5rem, 9vw, 8.5rem);
+  --space-2xl: clamp(8rem, 16vw, 15rem);
+  --space-3xl: clamp(11rem, 23vw, 23rem);
+
+  /* Fluid editorial type scale: intentionally large, light, and tight */
+  --step--1: clamp(0.72rem, 0.69rem + 0.13vw, 0.82rem);
+  --step-0: clamp(0.96rem, 0.91rem + 0.22vw, 1.08rem);
+  --step-1: clamp(1.14rem, 1.02rem + 0.55vw, 1.48rem);
+  --step-2: clamp(1.55rem, 1.22rem + 1.45vw, 2.4rem);
+  --step-3: clamp(2.2rem, 1.45rem + 3.4vw, 4.2rem);
+  --step-4: clamp(3.4rem, 1.55rem + 8vw, 7.75rem);
+  --step-5: clamp(4.35rem, 1.55rem + 11vw, 8.6rem);
+
+  /* Lines, shadows, and interaction */
+  --border-subtle: rgba(255, 255, 255, 0.16);
+  --border-dark: rgba(0, 0, 0, 0.18);
+  --shadow-soft: 0 2.25rem 5rem rgba(0, 0, 0, 0.34);
+  --shadow-red: 0 1.1rem 2.5rem rgba(164, 13, 18, 0.28);
+  --transition-fast: 180ms ease;
+  --transition-base: 360ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Shared motion defaults */
+  --reveal-duration: 720ms;
+  --reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --reveal-travel: 32px;
+  --reveal-stagger: 80ms;
+}
+
+@media (max-width: 45rem) {
+  :root {
+    --header-height: 5rem;
+    --space-2xl: 7rem;
+    --space-3xl: 10rem;
+    --reveal-travel: 24px;
+  }
+}

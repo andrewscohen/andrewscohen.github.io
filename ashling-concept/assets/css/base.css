@@ -1,0 +1,265 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 1rem);
+}
+
+body {
+  min-width: 20rem;
+  margin: 0;
+  overflow-x: hidden;
+  color: var(--color-white);
+  background: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: inherit;
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--step-5);
+}
+
+h2 {
+  font-size: var(--step-4);
+}
+
+h3 {
+  font-size: var(--step-3);
+}
+
+p {
+  max-width: 68ch;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--color-red);
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+address {
+  font-style: normal;
+}
+
+::selection {
+  color: var(--color-white);
+  background: var(--color-red-deep);
+}
+
+:focus-visible {
+  outline: 0.2rem solid var(--color-red);
+  outline-offset: 0.25rem;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.75rem 1rem;
+  transform: translateY(-180%);
+  color: var(--color-ink);
+  background: var(--color-cream);
+  font-family: var(--font-poster);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform var(--transition-fast);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.wrap {
+  width: min(calc(100% - (2 * var(--gutter))), var(--wrap));
+  margin-inline: auto;
+}
+
+.section {
+  position: relative;
+  min-height: 165svh;
+  display: flex;
+  align-items: center;
+  padding-block: var(--space-2xl);
+}
+
+.section--feature {
+  min-height: 190svh;
+}
+
+.section--tight {
+  min-height: 110svh;
+  padding-block: var(--space-xl);
+}
+
+.section--cream {
+  color: var(--color-ink);
+  background: var(--color-cream);
+}
+
+.section--red {
+  color: var(--color-white);
+  background: var(--color-red-deep);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.flow > * + * {
+  margin-top: var(--flow-space, var(--space-md));
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: inherit;
+  font-family: var(--font-poster);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.text-link::after {
+  width: 2.75rem;
+  height: 1px;
+  background: var(--color-red);
+  content: "";
+  transition: width var(--transition-base);
+}
+
+.text-link:hover::after {
+  width: 4rem;
+}
+
+.quiet-link {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: var(--step--1);
+}
+
+.section--cream .quiet-link {
+  color: rgba(0, 0, 0, 0.68);
+}
+
+@media (max-width: 48rem) {
+  .grid--2,
+  .grid--3 {
+    grid-template-columns: 1fr;
+  }
+
+  .section,
+  .section--feature {
+    min-height: auto;
+    padding-block: var(--space-3xl);
+  }
+
+  .section--tight {
+    min-height: auto;
+    padding-block: var(--space-2xl);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

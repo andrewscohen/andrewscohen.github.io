@@ -1,0 +1,80 @@
+/*
+ * Progressive motion contract:
+ * no-js and reduced-motion visitors see the final, static state.
+ * Only site.js may replace no-js with js-motion.
+ */
+.js-motion .reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-travel));
+  transition:
+    opacity var(--reveal-duration) var(--reveal-ease),
+    transform var(--reveal-duration) var(--reveal-ease);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.js-motion .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+/* site.js writes --reveal-delay to reveal children of a data-stagger group. */
+.js-motion [data-stagger] > .reveal {
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/*
+ * A clipped ancestor makes the fixed media and overlay belong visually to
+ * their section. Without js-motion both are absolute and scroll normally.
+ */
+.parallax-stage {
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+  clip-path: inset(0);
+}
+
+.parallax-media {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+}
+
+.parallax-stage > :is(.hero-overlay, .parallax-break-overlay) {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+}
+
+.parallax-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.js-motion .parallax-stage .parallax-media,
+.js-motion .parallax-stage > :is(.hero-overlay, .parallax-break-overlay) {
+  position: fixed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .js-motion .reveal,
+  .js-motion .reveal.is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .parallax-stage {
+    clip-path: none;
+  }
+
+  .parallax-media,
+  .js-motion .parallax-stage .parallax-media,
+  .parallax-stage > :is(.hero-overlay, .parallax-break-overlay),
+  .js-motion .parallax-stage > :is(.hero-overlay, .parallax-break-overlay) {
+    position: absolute;
+  }
+}
