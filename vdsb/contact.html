@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Video Doorman Safe Building</title>
+<meta name="description" content="Request a demo for your property. Tell us about your building and we'll reach out within one business day.">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="topbar">
+  <span>Serving multi-family residential buildings across Florida</span>
+  <div class="topbar-contact">
+    <span>Call 833-871-0144</span>
+    <!-- TODO: confirm this contact email with Mark before launch -->
+    <span>CustomerCare@americanremotevideo.com</span>
+  </div>
+</div>
+
+<header class="nav">
+  <a href="index.html" class="logo"><img src="assets/main-logo.png" alt="Video Doorman Safe Building"></a>
+  <button class="nav-toggle" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav-links">
+    <a href="safe-building.html">Safe Building</a>
+    <a href="safe-lobby.html">Safe Lobby</a>
+    <a href="video-doorman.html">Video Doorman</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+</header>
+
+<div class="contact-wrap">
+  <div class="section-eyebrow">GET A QUOTE</div>
+  <h1>Request a demo for your property</h1>
+  <p>Tell us about your building and we'll reach out within one business day to schedule a walkthrough.</p>
+
+  <!--
+    FORM HANDLING:
+    This form posts via fetch() to FORM_ENDPOINT in js/main.js.
+    Replace that endpoint with your CRM's form-submission URL
+    (or a Formspree endpoint) once confirmed. Field `name`
+    attributes below are what the endpoint will receive.
+  -->
+  <form class="contact-form" id="contact-form">
+    <div class="form-field">
+      <label for="full-name">Full name</label>
+      <input type="text" id="full-name" name="full_name" placeholder="Jane Smith" required>
+    </div>
+
+    <div class="form-row">
+      <div class="form-field">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" placeholder="(555) 555-0123" required>
+      </div>
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="jane@property.com" required>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="property-name">Property name</label>
+      <input type="text" id="property-name" name="property_name" placeholder="Bayview Residences" required>
+    </div>
+
+    <div class="form-row">
+      <div class="form-field">
+        <label for="units">Number of units</label>
+        <input type="number" id="units" name="units" placeholder="120">
+      </div>
+      <div class="form-field">
+        <label for="interest">Interested in</label>
+        <select id="interest" name="interest">
+          <option>Safe Building</option>
+          <option>Safe Lobby</option>
+          <option>Video Doorman (add-on)</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="message">Message (optional)</label>
+      <textarea id="message" name="message" rows="4" placeholder="Tell us about your property or current security setup"></textarea>
+    </div>
+
+    <button type="submit" class="form-submit">Request a Demo</button>
+    <div class="form-status"></div>
+  </form>
+</div>
+
+<footer class="site-footer">
+  <span>&copy; 2026 Video Doorman Safe Building &middot; Port St. Lucie, FL</span>
+  <div class="footer-links">
+    <a href="safe-building.html">Safe Building</a>
+    <a href="safe-lobby.html">Safe Lobby</a>
+    <a href="video-doorman.html">Video Doorman</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
