@@ -91,6 +91,61 @@ img { max-width: 100%; display: block; }
   }
 }
 
+/* ---------- Intro curtain (homepage only) ----------
+   Hidden by default so no-JS visitors see the page instantly. Only
+   site.js's enableMotion() (itself gated on prefers-reduced-motion) ever
+   makes this visible, so reduced-motion visitors never see it either. */
+.intro-curtain {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--ink);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.js-motion .intro-curtain {
+  display: flex;
+  opacity: 1;
+  transition: opacity 900ms ease;
+}
+
+.js-motion .intro-curtain.intro-fade {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-curtain .intro-sweep {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -2px;
+  height: 2px;
+  background: var(--red);
+  box-shadow: 0 0 16px 3px rgba(200, 29, 29, .75), 0 0 40px 12px rgba(200, 29, 29, .25);
+  transition: top 1.15s cubic-bezier(.6, 0, .2, 1);
+}
+
+.intro-curtain.intro-run .intro-sweep { top: 100%; }
+
+.intro-curtain img {
+  width: 220px;
+  height: auto;
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.intro-curtain.intro-logo-visible img { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-curtain,
+  .js-motion .intro-curtain {
+    display: none !important;
+  }
+}
+
 .container {
   max-width: var(--max-width);
   margin: 0 auto;

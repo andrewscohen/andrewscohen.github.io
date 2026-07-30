@@ -53,12 +53,59 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  var INTRO_SESSION_KEY = 'vdsbIntroPlayed';
+
+  function runIntro() {
+    var curtain = document.querySelector('.intro-curtain');
+    if (!curtain) return;
+
+    if (sessionStorage.getItem(INTRO_SESSION_KEY) === '1') {
+      curtain.remove();
+      return;
+    }
+
+    var dismissed = false;
+    function fadeOut() {
+      if (dismissed) return;
+      dismissed = true;
+      sessionStorage.setItem(INTRO_SESSION_KEY, '1');
+      curtain.classList.add('intro-fade');
+      curtain.addEventListener('transitionend', function handler(e) {
+        if (e.target !== curtain || e.propertyName !== 'opacity') return;
+        curtain.removeEventListener('transitionend', handler);
+        curtain.remove();
+      });
+      setTimeout(function () {
+        if (curtain.parentNode) curtain.remove();
+      }, 1050);
+    }
+
+    curtain.addEventListener('click', fadeOut);
+    document.addEventListener('keydown', function skipOnKey() {
+      fadeOut();
+      document.removeEventListener('keydown', skipOnKey);
+    });
+
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        curtain.classList.add('intro-run');
+      });
+    });
+
+    setTimeout(function () {
+      curtain.classList.add('intro-logo-visible');
+    }, 950);
+
+    setTimeout(fadeOut, 1420);
+  }
+
   function enableMotion() {
     if (motionQuery.matches || root.classList.contains('js-motion')) {
       return;
     }
     root.classList.replace('no-js', 'js-motion');
     setupReveals();
+    runIntro();
   }
 
   function disableMotion() {
@@ -70,6 +117,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.reveal').forEach(function (element) {
       element.classList.add('is-visible');
     });
+    var curtain = document.querySelector('.intro-curtain');
+    if (curtain) curtain.remove();
   }
 
   if (!motionQuery.matches) {
