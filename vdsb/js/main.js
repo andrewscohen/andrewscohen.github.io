@@ -142,9 +142,185 @@ function initMobileNav() {
   var links = document.querySelector('.nav-links');
   if (!toggle || !links) return;
 
+  var header = document.querySelector('.nav');
+  var topbar = document.querySelector('.topbar');
+  var cta = document.querySelector('.nav-cta');
+  var mobileQuery = window.matchMedia('(max-width: 760px)');
+  var scrim = document.createElement('div');
+  var isOpen = false;
+  var scrollX = 0;
+  var scrollY = 0;
+  var bodyStyles = null;
+
+  scrim.className = 'nav-scrim';
+  scrim.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(scrim);
+
+  function setHeaderMetrics() {
+    if (!header) return;
+    var topbarHeight = topbar ? topbar.getBoundingClientRect().height : 0;
+    var headerStackHeight = topbarHeight + header.getBoundingClientRect().height;
+
+    document.documentElement.style.setProperty(
+      '--topbar-h',
+      String(Math.ceil(topbarHeight)) + 'px'
+    );
+    document.documentElement.style.setProperty(
+      '--header-stack-h',
+      String(Math.ceil(headerStackHeight)) + 'px'
+    );
+  }
+
+  function refreshHeaderMetrics() {
+    window.requestAnimationFrame(function () {
+      if (mobileQuery.matches) setHeaderMetrics();
+    });
+  }
+
+  function lockScroll() {
+    scrollX = window.pageXOffset;
+    scrollY = window.pageYOffset;
+    bodyStyles = {
+      position: document.body.style.position,
+      top: document.body.style.top,
+      left: document.body.style.left,
+      width: document.body.style.width,
+      overflow: document.body.style.overflow
+    };
+    document.body.classList.add('nav-open');
+    document.body.style.position = 'fixed';
+    document.body.style.top = '-' + String(scrollY) + 'px';
+    document.body.style.left = '-' + String(scrollX) + 'px';
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function unlockScroll() {
+    if (!bodyStyles) return;
+    document.body.classList.remove('nav-open');
+    document.body.style.position = bodyStyles.position;
+    document.body.style.top = bodyStyles.top;
+    document.body.style.left = bodyStyles.left;
+    document.body.style.width = bodyStyles.width;
+    document.body.style.overflow = bodyStyles.overflow;
+    bodyStyles = null;
+    window.scrollTo(scrollX, scrollY);
+  }
+
+  function focusableLinks() {
+    return Array.prototype.slice.call(links.querySelectorAll('a[href]'));
+  }
+
+  function openMenu() {
+    if (isOpen || !mobileQuery.matches) return;
+    isOpen = true;
+    setHeaderMetrics();
+    lockScroll();
+    links.setAttribute('aria-hidden', 'false');
+    links.classList.add('open');
+    scrim.classList.add('open');
+    toggle.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Close navigation');
+
+    window.requestAnimationFrame(function () {
+      var targets = focusableLinks();
+      var target = links.querySelector('a.active') || targets[0];
+      if (target) target.focus();
+    });
+  }
+
+  function closeMenu(returnFocus) {
+    if (!isOpen) return;
+    isOpen = false;
+    if (returnFocus !== false) toggle.focus();
+    links.setAttribute('aria-hidden', 'true');
+    links.classList.remove('open');
+    scrim.classList.remove('open');
+    toggle.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open navigation');
+    unlockScroll();
+  }
+
+  function syncViewportMode() {
+    if (mobileQuery.matches) {
+      if (!isOpen) links.setAttribute('aria-hidden', 'true');
+    } else {
+      closeMenu(false);
+      links.removeAttribute('aria-hidden');
+      document.documentElement.style.removeProperty('--topbar-h');
+      document.documentElement.style.removeProperty('--header-stack-h');
+    }
+  }
+
   toggle.addEventListener('click', function () {
-    links.classList.toggle('open');
+    if (isOpen) {
+      closeMenu(true);
+    } else {
+      openMenu();
+    }
   });
+
+  scrim.addEventListener('click', function () {
+    closeMenu(true);
+  });
+
+  links.addEventListener('click', function (event) {
+    if (event.target.closest('a')) closeMenu(false);
+  });
+
+  if (cta) {
+    cta.addEventListener('click', function () {
+      closeMenu(false);
+    });
+  }
+
+  document.addEventListener('keydown', function (event) {
+    if (!isOpen) return;
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeMenu(true);
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+    var targets = focusableLinks();
+    if (!targets.length) return;
+    var first = targets[0];
+    var last = targets[targets.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    } else if (!links.contains(document.activeElement)) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
+  if (typeof mobileQuery.addEventListener === 'function') {
+    mobileQuery.addEventListener('change', syncViewportMode);
+  } else {
+    mobileQuery.addListener(syncViewportMode);
+  }
+  window.addEventListener('resize', function () {
+    refreshHeaderMetrics();
+  });
+  window.addEventListener('orientationchange', refreshHeaderMetrics);
+  window.addEventListener('pagehide', unlockScroll);
+
+  syncViewportMode();
+  if (mobileQuery.matches) setHeaderMetrics();
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () {
+      refreshHeaderMetrics();
+    });
+  }
 }
 
 /* ---------- Homepage hero carousel ---------- */
@@ -158,11 +334,17 @@ function initHeroCarousel() {
   var timer = null;
   var INTERVAL_MS = 8000;
 
+  slides.forEach(function (slide, index) {
+    slide.setAttribute('aria-hidden', index === active ? 'false' : 'true');
+  });
+
   function goTo(index) {
     slides[active].classList.remove('active');
+    slides[active].setAttribute('aria-hidden', 'true');
     dots[active] && dots[active].classList.remove('active');
     active = index;
     slides[active].classList.add('active');
+    slides[active].setAttribute('aria-hidden', 'false');
     dots[active] && dots[active].classList.add('active');
   }
 
