@@ -1,7 +1,8 @@
-# Everything on this site remains crawlable except the path below.
-# /ashling-concept/ is an unaffiliated concept redesign of a real
-# business's website. It reproduces that business's real name, address
-# and phone number for illustration, so it is kept out of search results
-# to avoid being mistaken for their official site.
+# Everything on this site remains crawlable except the paths below.
+# Each is an unaffiliated concept redesign of a real business's website.
+# They reproduce that business's real name and contact details for
+# illustration, so they are kept out of search results to avoid being
+# mistaken for the official site.
 User-agent: *
 Disallow: /ashling-concept/
+Disallow: /vdsb/

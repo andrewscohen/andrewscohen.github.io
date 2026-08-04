@@ -187,7 +187,8 @@ img { max-width: 100%; display: block; }
   gap: 6px;
 }
 
-.topbar .topbar-contact { display: flex; gap: 20px; align-items: center; }
+.topbar .topbar-contact { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 20px; align-items: center; }
+.topbar .topbar-contact span { white-space: nowrap; }
 .topbar .topbar-contact span:last-child { opacity: .75; }
 
 /* ---------- Nav ---------- */
