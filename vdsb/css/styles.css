@@ -471,6 +471,11 @@ img { max-width: 100%; display: block; }
   gap: 14px 32px;
 }
 .checklist .check-item { font-size: 14.5px; color: var(--body-text-darker); }
+.checklist-footnote { font-size: 12px; color: var(--label-gray); margin-top: 18px; }
+
+/* ---------- Body copy (long-form product overview paragraphs) ---------- */
+.body-copy p { font-size: 16px; line-height: 1.7; color: var(--body-text-dark); margin: 0 0 18px; }
+.body-copy p:last-child { margin-bottom: 0; }
 
 /* ---------- Trust / testimonials ---------- */
 .trust-section { background: var(--section-gray); padding: 52px var(--page-padding); }

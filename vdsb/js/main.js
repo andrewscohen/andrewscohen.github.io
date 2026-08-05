@@ -375,9 +375,30 @@ function initHeroCarousel() {
 ------------------------------------------------------------- */
 var FORM_ENDPOINT = 'https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID';
 
+function prefillInterest(form) {
+  // Product pages link here as contact.html?interest=Safe%20Building (etc.)
+  // so the request already reflects what the visitor was looking at.
+  var params = new URLSearchParams(window.location.search);
+  var wanted = params.get('interest');
+  if (!wanted) return;
+
+  var select = form.querySelector('#interest');
+  if (!select) return;
+
+  var options = select.querySelectorAll('option');
+  for (var i = 0; i < options.length; i++) {
+    if (options[i].textContent.trim() === wanted.trim()) {
+      select.value = options[i].value || options[i].textContent;
+      break;
+    }
+  }
+}
+
 function initContactForm() {
   var form = document.querySelector('.contact-form');
   if (!form) return;
+
+  prefillInterest(form);
 
   var status = form.querySelector('.form-status');
 
