@@ -2,7 +2,7 @@
    Video Doorman Safe Building — shared stylesheet
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap');
 
 :root {
   --ink: #141414;
@@ -285,6 +285,77 @@ img { max-width: 100%; display: block; }
 .hero .hero-image { height: 340px; }
 .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
 
+/* ---------- Homepage brand hero ---------- */
+.brand-hero {
+  position: relative;
+  isolation: isolate;
+  /* Fill the viewport below the topbar+nav stack, not just a fixed 600px
+     block -- measured topbar+nav height runs ~108-124px across
+     tablet/desktop widths (it grows slightly as the nav row wraps tighter
+     near the 760px breakpoint), so 130px covers that range with a small
+     buffer rather than leaving a gap at in-between widths. dvh (where
+     supported) accounts for mobile/desktop browser chrome the same way
+     100vh can't; the max() floor keeps the hero from getting squished on
+     short/landscape viewports. */
+  min-height: max(560px, calc(100vh - 130px));
+  min-height: max(560px, calc(100dvh - 130px));
+  padding: 96px var(--page-padding);
+  background: var(--ink);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.brand-hero-video,
+.brand-hero-poster-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+/* Default: video plays, static <img> twin stays hidden. */
+.brand-hero-poster-fallback { display: none; }
+
+/* Reduced motion: swap to the static twin, using the same frame as the
+   video's own poster, so the visual is identical minus motion -- never a
+   flat scrim colour with no image at all. */
+@media (prefers-reduced-motion: reduce) {
+  .brand-hero-video { display: none; }
+  .brand-hero-poster-fallback { display: block; }
+}
+.brand-hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  /* Near-opaque: the placeholder beneath is fully opaque light gray (.ph is
+     shared with light-background placeholders elsewhere on the site), so a
+     lighter scrim blends to a washed-out medium gray instead of a true dark
+     hero. This needs to read as convincingly dark for the white text above
+     it to have real contrast. */
+  background: rgba(10, 10, 10, .87);
+}
+.brand-hero-content {
+  width: 100%;
+  max-width: 940px;
+  text-align: center;
+}
+.brand-hero h2 {
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 1.04;
+  margin-bottom: 22px;
+}
+.brand-hero p {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  color: rgba(255, 255, 255, .86);
+  font-size: 18px;
+  line-height: 1.65;
+}
+
 /* Homepage hero carousel. Overlapping grid items keep the crossfade while
    allowing the tallest slide to participate in the carousel's height. */
 .carousel { display: grid; position: relative; min-height: 452px; }
@@ -474,7 +545,14 @@ img { max-width: 100%; display: block; }
 .checklist-footnote { font-size: 12px; color: var(--label-gray); margin-top: 18px; }
 
 /* ---------- Body copy (long-form product overview paragraphs) ---------- */
-.body-copy p { font-size: 16px; line-height: 1.7; color: var(--body-text-dark); margin: 0 0 18px; }
+.body-copy { max-width: 700px; }
+.body-copy p {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 18.5px;
+  line-height: 1.65;
+  color: var(--body-text-darker);
+  margin: 0 0 20px;
+}
 .body-copy p:last-child { margin-bottom: 0; }
 
 /* ---------- Trust / testimonials ---------- */
@@ -574,7 +652,7 @@ form.contact-form { text-align: left; display: flex; flex-direction: column; gap
 
 .credibility-band {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   text-align: center;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
@@ -826,6 +904,17 @@ form.contact-form { text-align: left; display: flex; flex-direction: column; gap
     margin-top: 0;
   }
   .hero h1, .carousel-slide h1 { font-size: 38px; }
+  .brand-hero {
+    /* Mobile topbar+nav stack measures ~146px (topbar wraps to its own
+       stacked lines below 760px), stable across mobile widths -- unlike
+       the desktop/tablet tier above, no wrap-driven range to buffer for. */
+    min-height: max(520px, calc(100vh - 150px));
+    min-height: max(520px, calc(100dvh - 150px));
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+  .brand-hero h2 { font-size: 38px; }
+  .brand-hero p { font-size: 16px; line-height: 1.6; }
   .cta-band h2 { font-size: 28px; }
   .section-title { font-size: 26px; }
   .addon-banner { grid-template-columns: 1fr; text-align: center; }
@@ -856,4 +945,117 @@ form.contact-form { text-align: left; display: flex; flex-direction: column; gap
     max-height: calc(100vh - var(--header-stack-h, 0px));
     max-height: calc(100dvh - var(--header-stack-h, 0px));
   }
+}
+
+/* ============================================================
+   Bug-report widget — floating trigger + modal dialog
+   ============================================================ */
+.bugbot-trigger {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1100;
+  padding: 12px 18px;
+  border-radius: var(--radius-lg);
+  border: none;
+  background: var(--ink);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .28);
+}
+.bugbot-trigger:hover { background: #000; }
+.bugbot-trigger:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+
+.bugbot-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background: rgba(0, 0, 0, .55);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms ease, visibility 0s linear 200ms;
+}
+.bugbot-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 200ms ease, visibility 0s linear 0s;
+}
+
+.bugbot-dialog {
+  position: fixed;
+  z-index: 1201;
+  left: 50%;
+  top: 50%;
+  width: min(420px, calc(100vw - 40px));
+  max-height: calc(100dvh - 40px);
+  overflow-y: auto;
+  transform: translate(-50%, -50%) scale(.96);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+  padding: 28px 24px 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms ease, transform 200ms ease, visibility 0s linear 200ms;
+}
+.bugbot-dialog.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+  transition: opacity 200ms ease, transform 200ms ease, visibility 0s linear 0s;
+}
+
+.bugbot-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--body-text);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+.bugbot-close:hover { background: var(--section-gray); }
+.bugbot-close:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+.bugbot-dialog h2 { font-size: 22px; margin: 0 0 6px; padding-right: 28px; }
+.bugbot-sub { font-size: 14px; color: var(--body-text); margin: 0 0 18px; }
+
+.bugbot-form { display: flex; flex-direction: column; gap: 6px; }
+.bugbot-form label { font-size: 13px; font-weight: 600; color: var(--ink); margin-top: 10px; }
+.bugbot-form label:first-of-type { margin-top: 0; }
+.bugbot-form textarea,
+.bugbot-form input[type="email"] {
+  font: inherit;
+  padding: 10px 12px;
+  border: 1px solid var(--border-gray);
+  border-radius: var(--radius-sm);
+  resize: vertical;
+}
+.bugbot-form textarea:focus,
+.bugbot-form input[type="email"]:focus {
+  outline: 2px solid var(--red);
+  outline-offset: 1px;
+  border-color: var(--red);
+}
+.bugbot-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.bugbot-submit { margin-top: 16px; width: 100%; }
+.bugbot-status { font-size: 14px; margin: 12px 0 0; display: none; }
+.bugbot-status.success { color: #1c7a3f; display: block; }
+.bugbot-status.error { color: var(--red); display: block; }
+
+@media (max-width: 480px) {
+  .bugbot-trigger { right: 12px; bottom: 12px; padding: 10px 16px; font-size: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bugbot-backdrop,
+  .bugbot-dialog { transition: none !important; }
+  .bugbot-dialog.is-open { transform: translate(-50%, -50%) scale(1); }
 }

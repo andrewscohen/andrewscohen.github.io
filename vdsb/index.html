@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Video Doorman Safe Building | Video Security for Multi-Family Properties in Florida</title>
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Live-monitored video security for multi-family residential buildings across Florida — lobby monitoring, full-building coverage, and video-verified entry.">
+<meta name="description" content="Live-monitored video security for multi-family residential buildings — lobby monitoring, full-building coverage, and video-verified entry.">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
 </div>
 
 <div class="topbar">
-  <span>Serving multi-family residential buildings across Florida</span>
+  <span>Serving multi-family residential buildings</span>
   <div class="topbar-contact">
     <span>Call 833-871-0144</span>
     <!-- TODO: confirm this contact email with Mark before launch -->
@@ -45,6 +45,41 @@
   </nav>
   <a href="contact.html" class="nav-cta btn btn-primary">Request a Demo</a>
 </header>
+
+<section class="brand-hero reveal">
+  <!--
+    Atmospheric background only -- not a depiction of any real or client property.
+    Autoplay/muted/loop/playsinline for cross-browser silent autoplay; poster shows
+    before the video loads. For anyone who has requested reduced motion, styles.css
+    hides this <video> entirely (display:none also hides its poster) and shows the
+    plain <img> twin below instead, using that same frame as a permanent static
+    background -- so reduced-motion visitors see the identical first-paint image,
+    just with no motion and no video element at all, rather than losing the visual
+    down to a flat scrim colour. The scrim between this layer and the foreground
+    content keeps the approved white company-wide message legible over both.
+  -->
+  <video class="brand-hero-video" autoplay muted loop playsinline
+         poster="assets/video/brand-hero-poster.jpg" aria-hidden="true">
+    <source src="assets/video/brand-hero.mp4" type="video/mp4">
+  </video>
+  <img class="brand-hero-poster-fallback" src="assets/video/brand-hero-poster.jpg" alt="" aria-hidden="true">
+  <div class="brand-hero-scrim" aria-hidden="true"></div>
+  <div class="brand-hero-content">
+    <h2>Built by security engineers, for property teams who can't afford to guess</h2>
+    <p>Video Doorman Safe Building protects multi-family properties with live-monitored video security — access control, lobby monitoring, and full-building coverage designed around how residential properties actually operate.</p>
+    <a href="contact.html" class="btn btn-primary">Request a Demo</a>
+  </div>
+  <!--
+    This section intentionally ends before the existing homepage product carousel. Its
+    single plain contact.html action is company-wide and carries no product-interest
+    prefill. The carousel below retains its separate product-specific headings, copy,
+    actions, slide state, and media placeholders without modification. Keeping the two
+    experiences as adjacent sibling blocks makes the reading order explicit: first the
+    broad Video Doorman Safe Building brand statement, then the unchanged set of product
+    choices. No carousel element is nested into or visually overlaid by this new hero at
+    any viewport width.
+  -->
+</section>
 
 <!-- Hero carousel -->
 <div class="carousel">
