@@ -545,6 +545,8 @@ h3 {
   background: linear-gradient(var(--mustard), rgba(245, 160, 0, 0));
   opacity: 0.55;
   pointer-events: none;
+  transform: scaleY(var(--bar-scale, 1));
+  transform-origin: center;
 }
 
 .hero__content > *,
@@ -651,7 +653,19 @@ h3 {
 .story-grid > :last-child {
   position: relative;
   padding-left: 1.35rem;
-  border-left: 3px solid var(--mustard);
+}
+
+.story-grid > :last-child::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  background: var(--mustard);
+  pointer-events: none;
+  transform: scaleY(var(--bar-scale, 1));
+  transform-origin: center;
 }
 
 .story-quote {
@@ -1547,6 +1561,13 @@ h3 {
   .motion-ready [data-reveal],
   .motion-ready [data-reveal].is-revealed {
     opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero__content::before,
+  .page-hero .container::after,
+  .story-grid > :last-child::before {
     transform: none !important;
     transition: none !important;
   }

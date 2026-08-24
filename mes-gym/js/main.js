@@ -42,15 +42,64 @@
   }
 
   var revealElements = document.querySelectorAll("[data-reveal]");
+  var scrollBarElements = document.querySelectorAll("[data-scroll-bar]");
   var reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   var supportsIntersectionObserver = "IntersectionObserver" in window;
 
-  if (!reduceMotionQuery.matches && supportsIntersectionObserver && revealElements.length) {
+  if (!reduceMotionQuery.matches && supportsIntersectionObserver && (revealElements.length || scrollBarElements.length)) {
+    var activeScrollBars = new Set();
+    var scrollBarFrame = null;
+
+    function updateScrollBars() {
+      scrollBarFrame = null;
+
+      if (!activeScrollBars.size) return;
+
+      var viewportH = window.innerHeight;
+
+      activeScrollBars.forEach(function (element) {
+        var bounds = element.getBoundingClientRect();
+        var elementCenter = bounds.top + bounds.height / 2;
+        var raw = (viewportH - elementCenter) / (viewportH / 2);
+        var progress = Math.max(0, Math.min(1, raw));
+        var scale = 0.2 + 0.8 * progress;
+
+        element.style.setProperty("--bar-scale", scale.toFixed(3));
+      });
+
+      scrollBarFrame = window.requestAnimationFrame(updateScrollBars);
+    }
+
+    function startScrollBarUpdates() {
+      if (activeScrollBars.size && scrollBarFrame === null) {
+        scrollBarFrame = window.requestAnimationFrame(updateScrollBars);
+      }
+    }
+
     var motionObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
+        var isScrollBar = entry.target.hasAttribute("data-scroll-bar");
+
+        if (isScrollBar) {
+          if (entry.isIntersecting) {
+            activeScrollBars.add(entry.target);
+            startScrollBarUpdates();
+          } else {
+            activeScrollBars.delete(entry.target);
+
+            if (!activeScrollBars.size && scrollBarFrame !== null) {
+              window.cancelAnimationFrame(scrollBarFrame);
+              scrollBarFrame = null;
+            }
+          }
+        }
+
+        if (entry.isIntersecting && entry.target.hasAttribute("data-reveal")) {
           entry.target.classList.add("is-revealed");
-          motionObserver.unobserve(entry.target);
+
+          if (!isScrollBar) {
+            motionObserver.unobserve(entry.target);
+          }
         }
       });
     }, {
@@ -62,7 +111,13 @@
       motionObserver.observe(element);
     });
 
-    document.documentElement.classList.add("motion-ready");
+    Array.prototype.forEach.call(scrollBarElements, function (element) {
+      motionObserver.observe(element);
+    });
+
+    if (revealElements.length) {
+      document.documentElement.classList.add("motion-ready");
+    }
   }
 
   var menuToggle = document.querySelector(".menu-toggle");
