@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contact Me’s fitness lifestyle gym in Kigali, Rwanda.">
+  <title>Contact | Me’s Kigali</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/mes-icon.png">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand-mark" href="index.html" aria-label="Me’s home"><img src="assets/mes-wordmark.png" alt="Me's"></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Open navigation"><span></span><span></span><span></span></button>
+      <nav class="site-nav" id="site-navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="membership.html">Membership</a></li>
+          <li><a href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- TODO: swap this CSS placeholder for real gym photography -->
+    <section class="page-hero">
+      <div class="container" data-reveal>
+        <p class="eyebrow">Talk To Us</p>
+        <h1>Make Your <span class="mustard">Move.</span></h1>
+        <p class="lead">Questions about training, membership, or the facility? Send a message. The next step starts here.</p>
+      </div>
+    </section>
+
+    <section class="section section--light">
+      <div class="container contact-layout">
+        <div data-reveal>
+          <p class="eyebrow">Contact Me’s</p>
+          <h2>We’ll Help You <span class="mustard">Get Started.</span></h2>
+          <p>Use the form and the Me’s team will follow up. This preview form records no data and does not send a message yet.</p>
+          <ul class="contact-list" id="contact-details">
+            <li><span>WhatsApp</span><a href="#contact-details" aria-disabled="true">TODO: Add confirmed WhatsApp link</a></li>
+            <li><span>Phone</span><a href="#contact-details" aria-disabled="true">TODO: Add confirmed phone number</a></li>
+            <li><span>Instagram</span><a href="#contact-details" aria-disabled="true">TODO: Add confirmed social profile</a></li>
+            <li><span>Email</span><a href="#contact-details" aria-disabled="true">TODO: Add confirmed email address</a></li>
+          </ul>
+        </div>
+        <form class="form-card" data-contact-form data-reveal>
+          <div class="field">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" required></textarea>
+          </div>
+          <button class="button button--dark" type="submit">Send Message</button>
+          <p class="form-status" data-contact-status role="status">Thanks, we’ll be in touch.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="section section--soft">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Find Us</p>
+        <h2 data-reveal>Kigali, <span class="mustard">Rwanda.</span></h2>
+        <div class="info-strip" data-reveal-group>
+          <article class="info-box" data-reveal>
+            <h3>Address</h3>
+            <p>Kigali, Rwanda</p>
+            <p class="todo-text">TODO: Add confirmed street address and map link.</p>
+          </article>
+          <article class="info-box" data-reveal>
+            <h3>Hours</h3>
+            <p>Mon–Sat, 6am–9pm</p>
+            <p class="todo-text">Placeholder — confirm with Brown.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" data-reveal>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand-mark" href="index.html" aria-label="Me’s home"><img src="assets/mes-wordmark.png" alt="Me's"></a>
+          <p class="footer-intro">Rise Above. Train Hard. Kigali’s home for focused training, recovery, and the daily pursuit of better.</p>
+        </div>
+        <div><p class="footer-heading">Find Us</p><ul class="footer-links"><li><span>Kigali, Rwanda</span></li><li><a href="contact.html">Contact Me’s</a></li><li><span>Phone: TODO</span></li></ul></div>
+        <div><p class="footer-heading">Follow</p><ul class="footer-links"><li><span>Instagram: TODO</span></li><li><span>WhatsApp: TODO</span></li><li><span>Facebook: TODO</span></li></ul></div>
+      </div>
+      <p class="footer-bottom">© <span data-current-year>2026</span> Me’s. All rights reserved. More Than A Gym.</p>
+    </div>
+  </footer>
+</body>
+</html>

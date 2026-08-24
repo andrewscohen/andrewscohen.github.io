@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Monthly gym membership at Me’s in Kigali, Rwanda.">
+  <title>Membership | Me’s Kigali</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/mes-icon.png">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand-mark" href="index.html" aria-label="Me’s home"><img src="assets/mes-wordmark.png" alt="Me's"></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Open navigation"><span></span><span></span><span></span></button>
+      <nav class="site-nav" id="site-navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="training.html">Training</a></li>
+          <li><a href="membership.html" aria-current="page">Membership</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- TODO: swap this CSS placeholder for real gym photography -->
+    <section class="page-hero">
+      <div class="container" data-reveal>
+        <p class="eyebrow">Monthly Facility Access</p>
+        <h1>Own Your <span class="mustard">Routine.</span></h1>
+        <p class="lead">A place to train hard, recover well, and come back stronger. Build consistency with a monthly Me’s membership.</p>
+      </div>
+    </section>
+
+    <section class="section section--light">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Membership Options</p>
+        <h2 data-reveal>Choose Your <span class="mustard">Access.</span></h2>
+        <p class="lead" data-reveal>These tiers and inclusions are proposed placeholders. Brown must confirm the final offer and pricing before launch.</p>
+        <div class="package-grid package-grid--two" data-reveal-group>
+          <article class="package-card" data-reveal data-reveal-dir="left">
+            <span class="package-card__label">Monthly</span>
+            <h3>Gym Access</h3>
+            <p class="package-card__price">(price TBD)</p>
+            <ul>
+              <li>Monthly facility membership</li>
+              <li>Weights and strength floor access</li>
+              <li>Inclusions to be confirmed</li>
+            </ul>
+            <button class="button button--dark" type="button" data-checkout-trigger data-package="Monthly Gym Access" data-price="Price TBD">Subscribe</button>
+          </article>
+          <article class="package-card package-card--featured" data-reveal data-reveal-dir="right">
+            <span class="package-card__label">Monthly · Proposed</span>
+            <h3>Gym + Recovery</h3>
+            <p class="package-card__price">(price TBD)</p>
+            <ul>
+              <li>Monthly facility membership</li>
+              <li>Gym floor and pool access</li>
+              <li>Steam room and sauna access</li>
+            </ul>
+            <button class="button button--dark" type="button" data-checkout-trigger data-package="Monthly Gym + Recovery" data-price="Price TBD">Subscribe</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TODO: swap this CSS placeholder for real gym photography -->
+    <section class="section section--pattern">
+      <div class="container split-layout">
+        <div data-reveal>
+          <p class="eyebrow">Feel The Pulse</p>
+          <h2>More Than <span class="mustard">Access.</span></h2>
+        </div>
+        <div data-reveal>
+          <p class="lead">Membership puts you inside a culture of progress. Come for the equipment. Stay for the standard you set for yourself.</p>
+          <p>Need more structure? Add one-on-one personal training for coaching built around your individual goals.</p>
+          <a class="button" href="training.html">Explore Personal Training</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" data-reveal>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand-mark" href="index.html" aria-label="Me’s home"><img src="assets/mes-wordmark.png" alt="Me's"></a>
+          <p class="footer-intro">Rise Above. Train Hard. Kigali’s home for focused training, recovery, and the daily pursuit of better.</p>
+        </div>
+        <div><p class="footer-heading">Find Us</p><ul class="footer-links"><li><span>Kigali, Rwanda</span></li><li><a href="contact.html">Contact Me’s</a></li><li><span>Phone: TODO</span></li></ul></div>
+        <div><p class="footer-heading">Follow</p><ul class="footer-links"><li><span>Instagram: TODO</span></li><li><span>WhatsApp: TODO</span></li><li><span>Facebook: TODO</span></li></ul></div>
+      </div>
+      <p class="footer-bottom">© <span data-current-year>2026</span> Me’s. All rights reserved. More Than A Gym.</p>
+    </div>
+  </footer>
+
+  <!-- TODO: wire to a real payment processor (e.g. MTN MoMo API + Flutterwave/IremboPay for cards) once merchant accounts are set up -->
+  <div class="checkout-modal" data-checkout-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+    <div class="checkout-panel">
+      <button class="checkout-close" type="button" data-checkout-close aria-label="Close checkout">×</button>
+      <p class="eyebrow">Membership Request</p>
+      <h2 id="checkout-title">Join The <span class="mustard">Movement.</span></h2>
+      <form data-checkout-form>
+        <div data-checkout-fields>
+          <div class="checkout-selection">
+            <strong data-selection-name>Selected membership</strong>
+            <span data-selection-price>Price TBD</span>
+          </div>
+          <fieldset class="payment-options">
+            <legend class="fieldset-label">Preferred payment method</legend>
+            <label class="radio-option"><input type="radio" name="payment-method" value="MTN Mobile Money" required><span>MTN Mobile Money</span></label>
+            <label class="radio-option"><input type="radio" name="payment-method" value="Card / International Payment" required><span>Card / International Payment</span></label>
+          </fieldset>
+          <div class="field">
+            <label for="checkout-name">Name</label>
+            <input id="checkout-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="checkout-contact">Phone or email</label>
+            <input id="checkout-contact" name="contact" type="text" autocomplete="tel" required>
+          </div>
+          <button class="button button--dark" type="submit">Request Membership</button>
+        </div>
+        <div class="checkout-confirmation" data-checkout-confirmation role="status">
+          <h3>Request received.</h3>
+          <p>Thanks — we will contact you to confirm payment and get you started.</p>
+          <p>No payment has been processed.</p>
+          <button class="button button--dark" type="button" data-checkout-close>Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
