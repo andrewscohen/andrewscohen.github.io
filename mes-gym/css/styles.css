@@ -433,6 +433,18 @@ h3 {
   color: var(--mustard);
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .lead {
   max-width: 650px;
   color: var(--ink-soft);
@@ -474,6 +486,13 @@ h3 {
 
 .hero {
   padding: 4rem 0 3.5rem;
+  background-color: var(--charcoal);
+  background-image:
+    linear-gradient(90deg, rgba(26, 26, 26, 0.9) 0%, rgba(26, 26, 26, 0.88) 55%, rgba(26, 26, 26, 0.86) 100%),
+    url("../assets/hero-placeholder.jpg");
+  background-position: center, 68% center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .hero-motion__grain,
@@ -536,7 +555,7 @@ h3 {
 .hero__copy {
   max-width: 570px;
   margin-bottom: 1.8rem;
-  color: var(--grey);
+  color: var(--off-white);
   font-size: 1.05rem;
 }
 
@@ -803,6 +822,13 @@ h3 {
   gap: 1.25rem;
 }
 
+.package-grid--single {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 620px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .package-card {
   --interaction-lift: 0px;
   position: relative;
@@ -940,6 +966,26 @@ h3 {
 .remote-banner p {
   max-width: 650px;
   color: var(--grey);
+}
+
+.remote-option {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.remote-option h3 {
+  margin: 0.55rem 0 0.25rem;
+}
+
+.remote-banner .remote-option__price {
+  margin: 0;
+  font-size: 0.82rem;
+  font-style: italic;
+  font-weight: 600;
 }
 
 /* Contact, information, and modal surfaces */
@@ -1312,6 +1358,10 @@ h3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .package-grid--single {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .facility-item {
     grid-template-columns: 3.5rem 1fr;
     padding: 1.5rem 0;
@@ -1380,6 +1430,10 @@ h3 {
 
   .hero {
     padding: 6rem 0 5.75rem;
+    background-image:
+      linear-gradient(90deg, rgba(26, 26, 26, 0.54) 0%, rgba(26, 26, 26, 0.58) 42%, rgba(26, 26, 26, 0.84) 58%, rgba(26, 26, 26, 0.84) 92%, rgba(26, 26, 26, 0.62) 100%),
+      url("../assets/hero-placeholder.jpg");
+    background-position: center, left center;
   }
 
   .hero-motion__ghost {
@@ -1417,6 +1471,10 @@ h3 {
 
   .package-grid--two {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .package-grid--single {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .package-card {
@@ -1465,6 +1523,10 @@ h3 {
     grid-template-columns: 1fr auto;
     align-items: center;
     padding: 2.25rem;
+  }
+
+  .remote-option {
+    min-width: 280px;
   }
 }
 
