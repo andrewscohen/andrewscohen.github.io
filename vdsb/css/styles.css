@@ -2,7 +2,7 @@
    Video Doorman Safe Building — shared stylesheet
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
   --ink: #141414;
@@ -1058,4 +1058,208 @@ form.contact-form { text-align: left; display: flex; flex-direction: column; gap
   .bugbot-backdrop,
   .bugbot-dialog { transition: none !important; }
   .bugbot-dialog.is-open { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* ============================================================
+   Mark landing intro — homepage only
+   ============================================================ */
+.mark-landing-intro {
+  --red: oklch(52% 0.22 25);
+  --red-hover: oklch(46% 0.2 25);
+  --red-glow: oklch(52% 0.22 25 / 0.15);
+  --black: oklch(12% 0.01 25);
+  --black-mid: oklch(18% 0.008 25);
+  --white: oklch(98% 0.003 25);
+  --white-off: oklch(94% 0.005 25);
+  --gray-text: oklch(70% 0.005 25);
+  --gray-border: oklch(30% 0.008 25);
+  --font: 'Inter', system-ui, sans-serif;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: var(--font);
+  background: var(--black);
+  color: var(--white);
+  min-height: max(720px, calc(100vh - 130px));
+  min-height: max(720px, calc(100dvh - 130px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4.5rem 1.5rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mark-landing-intro h1,
+.mark-landing-intro h2,
+.mark-landing-intro h3 {
+  font-family: var(--font);
+  text-wrap: balance;
+}
+
+.mark-landing-intro p { text-wrap: pretty; }
+
+.mark-landing-intro .header {
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 700px;
+}
+
+.mark-landing-intro .logo {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.mark-landing-intro .logo-bar {
+  width: 24px;
+  height: 3px;
+  background: var(--red);
+  border-radius: 2px;
+}
+
+.mark-landing-intro .header h1 {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.mark-landing-intro .header h1 span { color: var(--red); }
+
+.mark-landing-intro .header p {
+  font-size: 1.1rem;
+  color: var(--gray-text);
+  line-height: 1.6;
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.mark-landing-intro .choices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1100px;
+  width: 100%;
+}
+
+.mark-landing-intro .choice-btn {
+  background: var(--black-mid);
+  border: 1px solid var(--gray-border);
+  border-radius: 16px;
+  padding: 3rem 2.25rem;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  transition: border-color 300ms var(--ease-out-expo),
+              transform 300ms var(--ease-out-expo),
+              box-shadow 300ms var(--ease-out-expo);
+  position: relative;
+  overflow: hidden;
+}
+
+.mark-landing-intro .choice-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 120%, var(--red-glow), transparent 70%);
+  opacity: 0;
+  transition: opacity 400ms var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.mark-landing-intro .choice-btn:hover {
+  border-color: var(--red);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px oklch(52% 0.22 25 / 0.1);
+  color: var(--white);
+}
+
+.mark-landing-intro .choice-btn:hover::after { opacity: 1; }
+
+.mark-landing-intro .choice-btn:hover .choice-arrow {
+  transform: translateX(4px);
+  color: var(--red);
+}
+
+.mark-landing-intro .choice-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: oklch(22% 0.01 25);
+  border: 1px solid var(--gray-border);
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.75rem;
+}
+
+.mark-landing-intro .choice-btn:hover .choice-icon {
+  background: oklch(52% 0.22 25 / 0.12);
+  border-color: var(--red);
+}
+
+.mark-landing-intro .choice-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+  position: relative;
+}
+
+.mark-landing-intro .choice-desc {
+  font-size: 0.925rem;
+  color: var(--gray-text);
+  line-height: 1.65;
+  flex: 1;
+  position: relative;
+}
+
+.mark-landing-intro .choice-arrow {
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gray-text);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: transform 200ms var(--ease-out-expo), color 200ms;
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .mark-landing-intro .choices {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+
+  .mark-landing-intro .choice-btn { padding: 2.25rem 2rem; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mark-landing-intro .header,
+  .mark-landing-intro .choice-btn {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: mark-landing-rise 600ms var(--ease-out-expo) forwards;
+  }
+
+  .mark-landing-intro .header { animation-delay: 0ms; }
+  .mark-landing-intro .choice-btn:nth-child(1) { animation-delay: 100ms; }
+  .mark-landing-intro .choice-btn:nth-child(2) { animation-delay: 200ms; }
+  .mark-landing-intro .choice-btn:nth-child(3) { animation-delay: 300ms; }
+
+  @keyframes mark-landing-rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
 }
