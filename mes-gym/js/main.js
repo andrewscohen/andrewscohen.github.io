@@ -43,17 +43,19 @@
 
   var revealElements = document.querySelectorAll("[data-reveal]");
   var scrollBarElements = document.querySelectorAll("[data-scroll-bar]");
+  var swipeRevealTracks = document.querySelectorAll("[data-swipe-reveal]");
   var reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   var supportsIntersectionObserver = "IntersectionObserver" in window;
 
-  if (!reduceMotionQuery.matches && supportsIntersectionObserver && (revealElements.length || scrollBarElements.length)) {
+  if (!reduceMotionQuery.matches && supportsIntersectionObserver && (revealElements.length || scrollBarElements.length || swipeRevealTracks.length)) {
     var activeScrollBars = new Set();
-    var scrollBarFrame = null;
+    var activeSwipeReveals = new Set();
+    var motionFrame = null;
 
-    function updateScrollBars() {
-      scrollBarFrame = null;
+    function updateMotion() {
+      motionFrame = null;
 
-      if (!activeScrollBars.size) return;
+      if (!activeScrollBars.size && !activeSwipeReveals.size) return;
 
       var viewportH = window.innerHeight;
 
@@ -67,12 +69,28 @@
         element.style.setProperty("--bar-scale", scale.toFixed(3));
       });
 
-      scrollBarFrame = window.requestAnimationFrame(updateScrollBars);
+      activeSwipeReveals.forEach(function (track) {
+        var stage = track.querySelector("[data-swipe-reveal-stage]");
+
+        if (!stage) return;
+
+        var bounds = track.getBoundingClientRect();
+        var stickyTop = parseFloat(window.getComputedStyle(stage).top) || 0;
+        var scrollRange = Math.max(1, bounds.height - stage.offsetHeight);
+        /* Scrub across the exact interval in which the stage is pinned. */
+        var raw = (stickyTop - bounds.top) / scrollRange;
+        var progress = Math.max(0, Math.min(1, raw));
+        var clipRight = 100 - progress * 100;
+
+        track.style.setProperty("--swipe-clip", clipRight.toFixed(3) + "%");
+      });
+
+      motionFrame = window.requestAnimationFrame(updateMotion);
     }
 
-    function startScrollBarUpdates() {
-      if (activeScrollBars.size && scrollBarFrame === null) {
-        scrollBarFrame = window.requestAnimationFrame(updateScrollBars);
+    function startMotionUpdates() {
+      if ((activeScrollBars.size || activeSwipeReveals.size) && motionFrame === null) {
+        motionFrame = window.requestAnimationFrame(updateMotion);
       }
     }
 
@@ -83,15 +101,24 @@
         if (isScrollBar) {
           if (entry.isIntersecting) {
             activeScrollBars.add(entry.target);
-            startScrollBarUpdates();
+            startMotionUpdates();
           } else {
             activeScrollBars.delete(entry.target);
-
-            if (!activeScrollBars.size && scrollBarFrame !== null) {
-              window.cancelAnimationFrame(scrollBarFrame);
-              scrollBarFrame = null;
-            }
           }
+        }
+
+        if (entry.target.hasAttribute("data-swipe-reveal")) {
+          if (entry.isIntersecting) {
+            activeSwipeReveals.add(entry.target);
+            startMotionUpdates();
+          } else {
+            activeSwipeReveals.delete(entry.target);
+          }
+        }
+
+        if (!activeScrollBars.size && !activeSwipeReveals.size && motionFrame !== null) {
+          window.cancelAnimationFrame(motionFrame);
+          motionFrame = null;
         }
 
         if (entry.isIntersecting && entry.target.hasAttribute("data-reveal")) {
@@ -115,7 +142,11 @@
       motionObserver.observe(element);
     });
 
-    if (revealElements.length) {
+    Array.prototype.forEach.call(swipeRevealTracks, function (element) {
+      motionObserver.observe(element);
+    });
+
+    if (revealElements.length || swipeRevealTracks.length) {
       document.documentElement.classList.add("motion-ready");
     }
   }
