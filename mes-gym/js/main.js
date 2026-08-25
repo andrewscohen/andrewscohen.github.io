@@ -82,6 +82,7 @@
         var progress = Math.max(0, Math.min(1, raw));
         var clipRight = 100 - progress * 100;
 
+        track.style.setProperty("--swipe-progress", progress.toFixed(3));
         track.style.setProperty("--swipe-clip", clipRight.toFixed(3) + "%");
       });
 

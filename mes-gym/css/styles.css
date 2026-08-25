@@ -845,6 +845,34 @@ h3 {
   object-position: center;
 }
 
+.swipe-reveal__crossroads-h,
+.swipe-reveal__crossroads-v {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  background: var(--mustard);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.swipe-reveal__crossroads-h {
+  top: 82%;
+  right: 4%;
+  left: 3%;
+  height: 3px;
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.swipe-reveal__crossroads-v {
+  top: 4%;
+  bottom: 5%;
+  left: 84%;
+  width: 3px;
+  transform: scaleY(1);
+  transform-origin: center bottom;
+}
+
 .swipe-reveal__text {
   display: flex;
   flex-direction: column;
@@ -878,6 +906,16 @@ h3 {
 .motion-ready .swipe-reveal__image--training {
   clip-path: inset(0 var(--swipe-clip, 100%) 0 0);
   will-change: clip-path;
+}
+
+.motion-ready .swipe-reveal__crossroads-h {
+  transform: scaleX(var(--swipe-progress, 0));
+  will-change: transform;
+}
+
+.motion-ready .swipe-reveal__crossroads-v {
+  transform: scaleY(var(--swipe-progress, 0));
+  will-change: transform;
 }
 
 .detail-grid {
@@ -1684,6 +1722,20 @@ h3 {
   .motion-ready .swipe-reveal__image--training {
     clip-path: none;
     will-change: auto;
+  }
+
+  .swipe-reveal__crossroads-h,
+  .swipe-reveal__crossroads-v {
+    transition: none !important;
+    will-change: auto !important;
+  }
+
+  .swipe-reveal__crossroads-h {
+    transform: scaleX(1) !important;
+  }
+
+  .swipe-reveal__crossroads-v {
+    transform: scaleY(1) !important;
   }
 
   .button:hover,
