@@ -922,6 +922,13 @@ form.contact-form { text-align: left; display: flex; flex-direction: column; gap
   .crosssell-banner,
   .upsell-banner,
   .addon-banner-sm { flex-direction: column; text-align: center; }
+
+  .mark-landing-intro .hero-split {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .mark-landing-intro .hero-image { order: -1; }
+  .mark-landing-intro .hero-image img { max-width: 220px; }
 }
 
 @media (max-width: 340px) and (orientation: portrait) {
@@ -1098,9 +1105,8 @@ form.contact-form { text-align: left; display: flex; flex-direction: column; gap
 .mark-landing-intro p { text-wrap: pretty; }
 
 .mark-landing-intro .header {
-  text-align: center;
-  margin-bottom: 4rem;
-  max-width: 700px;
+  text-align: left;
+  max-width: 560px;
 }
 
 .mark-landing-intro .logo {
@@ -1112,7 +1118,7 @@ form.contact-form { text-align: left; display: flex; flex-direction: column; gap
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.6rem;
 }
 
@@ -1138,7 +1144,29 @@ form.contact-form { text-align: left; display: flex; flex-direction: column; gap
   color: var(--gray-text);
   line-height: 1.6;
   max-width: 550px;
-  margin: 0 auto;
+  margin: 0;
+}
+
+.mark-landing-intro .hero-split {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1100px;
+  width: 100%;
+  margin-bottom: 4rem;
+}
+
+.mark-landing-intro .hero-image {
+  display: flex;
+  justify-content: center;
+}
+
+.mark-landing-intro .hero-image img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  display: block;
 }
 
 .mark-landing-intro .choices {
@@ -1238,6 +1266,13 @@ form.contact-form { text-align: left; display: flex; flex-direction: column; gap
 }
 
 @media (max-width: 900px) {
+  .mark-landing-intro .hero-split {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .mark-landing-intro .hero-image { order: -1; }
+  .mark-landing-intro .hero-image img { max-width: 260px; }
+
   .mark-landing-intro .choices {
     grid-template-columns: 1fr;
     max-width: 500px;
