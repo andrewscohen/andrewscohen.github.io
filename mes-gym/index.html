@@ -17,7 +17,7 @@
     <div class="site-intro__lockup">
       <div class="site-intro__mark">
         <svg class="site-intro__trace" viewBox="0 0 600 327" aria-hidden="true">
-          <path pathLength="1000" style="stroke-dasharray: 1000; stroke-dashoffset: 1000;" d="M15 300 C15 180 30 90 95 90 C150 90 150 190 220 210 C320 235 420 60 545 20 L545 300"></path>
+          <path pathLength="1000" style="stroke-dasharray: 1000; stroke-dashoffset: 1000;" d='M15 300 C15 180 30 90 95 90 C150 90 150 190 220 210 C320 235 420 60 545 20 L545 300'></path>
         </svg>
         <span class="site-intro__es">e&rsquo;s</span>
       </div>
@@ -58,19 +58,35 @@
       </div>
     </section>
 
-    <section class="section section--light">
-      <div class="container story-grid">
-        <div data-reveal>
-          <p class="eyebrow">Who We Are</p>
-          <h2>Built For Your <span class="mustard">Next Level.</span></h2>
-        </div>
-        <div data-scroll-bar>
-          <p class="lead" data-reveal>Since 2021, Me’s has been building Rwanda’s premier fitness lifestyle ecosystem—one grounded in discipline, progress, and community.</p>
-          <blockquote class="story-quote" data-reveal>The ultimate battle is against yesterday’s version of yourself.</blockquote>
-          <p data-reveal>That is Me vs Me. No shortcuts. No empty hype. Just the right environment, expert support, and daily work that moves you forward.</p>
+    <section class="section section--light" data-crossroads-split>
+      <div class="container">
+        <div class="story-crossroads">
+          <span class="story-crossroads__rule story-crossroads__rule--h" aria-hidden="true"></span>
+          <span class="story-crossroads__rule story-crossroads__rule--v" aria-hidden="true"></span>
+          <span class="story-crossroads__quadrant" aria-hidden="true"></span>
+          <div class="story-grid">
+            <div data-reveal>
+              <p class="eyebrow">Who We Are</p>
+              <h2>Built For Your <span class="mustard">Next Level.</span></h2>
+            </div>
+            <div data-scroll-bar>
+              <p class="lead" data-reveal>Since 2021, Me’s has been building Rwanda’s premier fitness lifestyle ecosystem—one grounded in discipline, progress, and community.</p>
+              <blockquote class="story-quote" data-reveal>The ultimate battle is against yesterday’s version of yourself.</blockquote>
+              <p data-reveal>That is Me vs Me. No shortcuts. No empty hype. Just the right environment, expert support, and daily work that moves you forward.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
+
+    <div class="ribbon-draw" data-ribbon-draw aria-hidden="true">
+      <div class="container ribbon-draw__frame">
+        <svg class="ribbon-draw__svg" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice">
+          <path class="ribbon-draw__path ribbon-draw__path--mustard" pathLength="1000" d="M-100 302 C120 288 214 72 438 112 C585 140 540 326 760 286 C942 253 1035 154 1300 220"></path>
+          <path class="ribbon-draw__path ribbon-draw__path--light" pathLength="1000" d="M-90 84 C152 105 270 320 498 274 C676 238 704 60 892 98 C1050 130 1140 206 1290 148"></path>
+        </svg>
+      </div>
+    </div>
 
     <section class="swipe-reveal" aria-label="Strength in motion">
       <div class="swipe-reveal__track" data-swipe-reveal>
@@ -90,26 +106,35 @@
       </div>
     </section>
 
+    <div class="ribbon-draw ribbon-draw--reverse" data-ribbon-draw aria-hidden="true">
+      <div class="container ribbon-draw__frame">
+        <svg class="ribbon-draw__svg" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice">
+          <path class="ribbon-draw__path ribbon-draw__path--mustard" pathLength="1000" d="M-100 302 C120 288 214 72 438 112 C585 140 540 326 760 286 C942 253 1035 154 1300 220"></path>
+          <path class="ribbon-draw__path ribbon-draw__path--light" pathLength="1000" d="M-90 84 C152 105 270 320 498 274 C676 238 704 60 892 98 C1050 130 1140 206 1290 148"></path>
+        </svg>
+      </div>
+    </div>
+
     <!-- TODO: swap this CSS placeholder for real gym photography -->
-    <section class="section section--pattern">
+    <section class="section section--pattern" data-stat-rise>
       <div class="container">
         <p class="eyebrow" data-reveal>Choose Your Path</p>
         <h2 data-reveal>Start Where <span class="mustard">You Are.</span></h2>
         <div class="card-grid" data-reveal-group>
           <a class="link-card" href="training.html" data-reveal>
-            <span class="link-card__number">01 / COACHING</span>
+            <span class="link-card__number"><span class="link-card__index">01</span> <span class="link-card__label">/ COACHING</span></span>
             <h3>Personal Training</h3>
             <p>Focused, one-on-one coaching built around your goals.</p>
             <span class="text-link">Explore training</span>
           </a>
           <a class="link-card" href="membership.html" data-reveal>
-            <span class="link-card__number">02 / ACCESS</span>
+            <span class="link-card__number"><span class="link-card__index">02</span> <span class="link-card__label">/ ACCESS</span></span>
             <h3>Membership</h3>
             <p>Train on your schedule with full facility access.</p>
             <span class="text-link">View membership</span>
           </a>
           <a class="link-card" href="about.html#facilities" data-reveal>
-            <span class="link-card__number">03 / EXPERIENCE</span>
+            <span class="link-card__number"><span class="link-card__index">03</span> <span class="link-card__label">/ EXPERIENCE</span></span>
             <h3>Our Facilities</h3>
             <p>Strength, recovery, and space to reset in central Kigali.</p>
             <span class="text-link">See the space</span>
@@ -118,22 +143,22 @@
       </div>
     </section>
 
-    <section class="section section--soft" id="facilities">
+    <section class="section section--soft" id="facilities" data-facility-stack>
       <div class="container">
         <p class="eyebrow" data-reveal>Inside Me’s</p>
         <h2 data-reveal>Train. Recover. <span class="mustard">Repeat.</span></h2>
         <div class="facility-grid" data-reveal-group>
-          <article class="facility-item" data-reveal data-reveal-dir="left">
+          <article class="facility-item" data-facility-card>
             <span class="facility-item__tag">Train</span>
             <h3>Gym Floor</h3>
             <p>Weights and strength equipment for focused training at every level.</p>
           </article>
-          <article class="facility-item" data-reveal data-reveal-dir="right">
+          <article class="facility-item" data-facility-card>
             <span class="facility-item__tag">Recover</span>
             <h3>Steam Room</h3>
             <p>Slow down, reset, and support recovery after the work is done.</p>
           </article>
-          <article class="facility-item" data-reveal data-reveal-dir="left">
+          <article class="facility-item" data-facility-card>
             <span class="facility-item__tag">Move</span>
             <h3>Pool</h3>
             <p>Low-impact movement, conditioning, and recovery in the water.</p>

@@ -44,18 +44,52 @@
   var revealElements = document.querySelectorAll("[data-reveal]");
   var scrollBarElements = document.querySelectorAll("[data-scroll-bar]");
   var swipeRevealTracks = document.querySelectorAll("[data-swipe-reveal]");
+  var ribbonDrawElements = document.querySelectorAll("[data-ribbon-draw]");
+  var crossroadsSplitElements = document.querySelectorAll("[data-crossroads-split]");
+  var facilityStackElements = document.querySelectorAll("[data-facility-stack]");
+  var statRiseElements = document.querySelectorAll("[data-stat-rise]");
   var reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   var supportsIntersectionObserver = "IntersectionObserver" in window;
+  var hasMotionElements = revealElements.length || scrollBarElements.length || swipeRevealTracks.length || ribbonDrawElements.length || crossroadsSplitElements.length || facilityStackElements.length || statRiseElements.length;
 
-  if (!reduceMotionQuery.matches && supportsIntersectionObserver && (revealElements.length || scrollBarElements.length || swipeRevealTracks.length)) {
+  if (!reduceMotionQuery.matches && supportsIntersectionObserver && hasMotionElements) {
     var activeScrollBars = new Set();
     var activeSwipeReveals = new Set();
+    var activeRibbonDraws = new Set();
+    var activeCrossroadsSplits = new Set();
+    var activeFacilityStacks = new Set();
+    var activeStatRises = new Set();
     var motionFrame = null;
+
+    function resolveProgress(raw) {
+      var clamped = Math.max(0, Math.min(1, raw));
+      /* One easing curve keeps every scrubbed module moving with the same cadence. */
+      return clamped * clamped * (3 - 2 * clamped);
+    }
+
+    function getSectionRawProgress(element, viewportH) {
+      var bounds = element.getBoundingClientRect();
+      var start = viewportH * 0.9;
+      var travel = viewportH * 0.68 + bounds.height * 0.55;
+
+      return (start - bounds.top) / Math.max(1, travel);
+    }
+
+    function getStaggeredProgress(raw, index, count) {
+      var stagger = 0.12;
+      var available = 1 - stagger * Math.max(0, count - 1);
+
+      return resolveProgress((raw - index * stagger) / Math.max(0.01, available));
+    }
+
+    function hasActiveMotion() {
+      return activeScrollBars.size || activeSwipeReveals.size || activeRibbonDraws.size || activeCrossroadsSplits.size || activeFacilityStacks.size || activeStatRises.size;
+    }
 
     function updateMotion() {
       motionFrame = null;
 
-      if (!activeScrollBars.size && !activeSwipeReveals.size) return;
+      if (!hasActiveMotion()) return;
 
       var viewportH = window.innerHeight;
 
@@ -63,7 +97,7 @@
         var bounds = element.getBoundingClientRect();
         var elementCenter = bounds.top + bounds.height / 2;
         var raw = (viewportH - elementCenter) / (viewportH / 2);
-        var progress = Math.max(0, Math.min(1, raw));
+        var progress = resolveProgress(raw);
         var scale = 0.2 + 0.8 * progress;
 
         element.style.setProperty("--bar-scale", scale.toFixed(3));
@@ -79,18 +113,62 @@
         var scrollRange = Math.max(1, bounds.height - stage.offsetHeight);
         /* Scrub across the exact interval in which the stage is pinned. */
         var raw = (stickyTop - bounds.top) / scrollRange;
-        var progress = Math.max(0, Math.min(1, raw));
+        var progress = resolveProgress(raw);
         var clipRight = 100 - progress * 100;
 
         track.style.setProperty("--swipe-progress", progress.toFixed(3));
         track.style.setProperty("--swipe-clip", clipRight.toFixed(3) + "%");
       });
 
+      activeRibbonDraws.forEach(function (element) {
+        var raw = getSectionRawProgress(element, viewportH);
+        var mustardProgress = resolveProgress(raw);
+        var lightProgress = resolveProgress((raw - 0.12) / 0.88);
+
+        element.style.setProperty("--ribbon-mustard-offset", (1000 * (1 - mustardProgress)).toFixed(2));
+        element.style.setProperty("--ribbon-light-offset", (1000 * (1 - lightProgress)).toFixed(2));
+      });
+
+      activeCrossroadsSplits.forEach(function (element) {
+        var progress = resolveProgress(getSectionRawProgress(element, viewportH));
+
+        element.style.setProperty("--crossroads-progress", progress.toFixed(3));
+      });
+
+      activeFacilityStacks.forEach(function (element) {
+        var cards = element.querySelectorAll("[data-facility-card]");
+        var raw = getSectionRawProgress(element, viewportH);
+
+        Array.prototype.forEach.call(cards, function (card, index) {
+          var progress = getStaggeredProgress(raw, index, cards.length);
+          var translate = (1 - progress) * (34 + index * 6);
+          var opacity = 0.18 + progress * 0.82;
+
+          card.style.setProperty("--facility-translate", translate.toFixed(2) + "px");
+          card.style.setProperty("--facility-opacity", opacity.toFixed(3));
+        });
+      });
+
+      activeStatRises.forEach(function (element) {
+        var cards = element.querySelectorAll(".link-card");
+        var raw = getSectionRawProgress(element, viewportH);
+
+        Array.prototype.forEach.call(cards, function (card, index) {
+          var progress = getStaggeredProgress(raw, index, cards.length);
+          var translate = (1 - progress) * 26;
+          var opacity = 0.2 + progress * 0.8;
+
+          card.style.setProperty("--stat-translate", translate.toFixed(2) + "px");
+          card.style.setProperty("--stat-opacity", opacity.toFixed(3));
+          card.style.setProperty("--stat-accent", progress.toFixed(3));
+        });
+      });
+
       motionFrame = window.requestAnimationFrame(updateMotion);
     }
 
     function startMotionUpdates() {
-      if ((activeScrollBars.size || activeSwipeReveals.size) && motionFrame === null) {
+      if (hasActiveMotion() && motionFrame === null) {
         motionFrame = window.requestAnimationFrame(updateMotion);
       }
     }
@@ -117,7 +195,43 @@
           }
         }
 
-        if (!activeScrollBars.size && !activeSwipeReveals.size && motionFrame !== null) {
+        if (entry.target.hasAttribute("data-ribbon-draw")) {
+          if (entry.isIntersecting) {
+            activeRibbonDraws.add(entry.target);
+            startMotionUpdates();
+          } else {
+            activeRibbonDraws.delete(entry.target);
+          }
+        }
+
+        if (entry.target.hasAttribute("data-crossroads-split")) {
+          if (entry.isIntersecting) {
+            activeCrossroadsSplits.add(entry.target);
+            startMotionUpdates();
+          } else {
+            activeCrossroadsSplits.delete(entry.target);
+          }
+        }
+
+        if (entry.target.hasAttribute("data-facility-stack")) {
+          if (entry.isIntersecting) {
+            activeFacilityStacks.add(entry.target);
+            startMotionUpdates();
+          } else {
+            activeFacilityStacks.delete(entry.target);
+          }
+        }
+
+        if (entry.target.hasAttribute("data-stat-rise")) {
+          if (entry.isIntersecting) {
+            activeStatRises.add(entry.target);
+            startMotionUpdates();
+          } else {
+            activeStatRises.delete(entry.target);
+          }
+        }
+
+        if (!hasActiveMotion() && motionFrame !== null) {
           window.cancelAnimationFrame(motionFrame);
           motionFrame = null;
         }
@@ -147,9 +261,23 @@
       motionObserver.observe(element);
     });
 
-    if (revealElements.length || swipeRevealTracks.length) {
-      document.documentElement.classList.add("motion-ready");
-    }
+    Array.prototype.forEach.call(ribbonDrawElements, function (element) {
+      motionObserver.observe(element);
+    });
+
+    Array.prototype.forEach.call(crossroadsSplitElements, function (element) {
+      motionObserver.observe(element);
+    });
+
+    Array.prototype.forEach.call(facilityStackElements, function (element) {
+      motionObserver.observe(element);
+    });
+
+    Array.prototype.forEach.call(statRiseElements, function (element) {
+      motionObserver.observe(element);
+    });
+
+    document.documentElement.classList.add("motion-ready");
   }
 
   var menuToggle = document.querySelector(".menu-toggle");

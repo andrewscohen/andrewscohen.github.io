@@ -668,6 +668,56 @@ h3 {
   transform-origin: center;
 }
 
+/* Cross Roads frame: the copy occupies the open field while the accent rules meet below it. */
+.story-crossroads {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 2.75rem 1.4rem 4.5rem 2.35rem;
+  border: 1px solid var(--hairline-dark);
+}
+
+.story-crossroads__rule,
+.story-crossroads__quadrant {
+  position: absolute;
+  z-index: -1;
+  display: block;
+  background: var(--mustard);
+  pointer-events: none;
+}
+
+.story-crossroads__rule--h {
+  right: 0;
+  bottom: 1rem;
+  left: 0;
+  height: 3px;
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* Stops at the horizontal rule so it meets the intersection rather than
+   running behind the filled quadrant. Reset to full height at >=860px, where
+   the rule instead aligns to the quadrant's right edge. */
+.story-crossroads__rule--v {
+  top: 0;
+  bottom: 1rem;
+  left: 1.15rem;
+  width: 3px;
+  transform: scaleY(1);
+  transform-origin: center top;
+}
+
+/* The mobile accent keeps the desktop sliver's elongated proportion without
+   adding mustard area. Its left edge meets the vertical rule. */
+.story-crossroads__quadrant {
+  bottom: 0;
+  left: 1.15rem;
+  width: 45%;
+  height: 1rem;
+  transform: scale(1);
+  transform-origin: left bottom;
+}
+
 .story-quote {
   margin: 1.65rem 0;
   font-size: clamp(1.55rem, 6vw, 2.1rem);
@@ -711,11 +761,40 @@ h3 {
 }
 
 .link-card__number {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.55rem;
   margin-bottom: auto;
+  padding-bottom: 0.9rem;
   color: var(--grey);
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.16em;
+}
+
+.link-card__number::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2.75rem;
+  height: 2px;
+  background: var(--mustard);
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.link-card__index {
+  color: var(--mustard);
+  font-size: clamp(2.15rem, 10vw, 3.5rem);
+  letter-spacing: -0.06em;
+  line-height: 0.78;
+  transform: translate3d(0, 0, 0);
+}
+
+.link-card__label {
+  line-height: 1;
 }
 
 .link-card p {
@@ -737,27 +816,27 @@ h3 {
 
 .facility-grid {
   margin-top: 2rem;
-  gap: 0;
   counter-reset: facilities;
-  border-bottom: 1px solid var(--hairline-dark);
 }
 
 .facility-item {
   position: relative;
-  display: grid;
-  grid-template-columns: 2.75rem 1fr;
-  column-gap: 1rem;
-  padding: 1.35rem 0;
+  display: flex;
+  min-height: 250px;
+  flex-direction: column;
+  padding: 1.5rem 0;
   border-top: 1px solid var(--hairline-dark);
   counter-increment: facilities;
 }
 
 .facility-item::before {
   content: counter(facilities, decimal-leading-zero);
-  grid-row: 1 / 4;
-  color: rgba(36, 36, 36, 0.34);
-  font-size: 0.78rem;
+  margin-bottom: 1rem;
+  color: var(--mustard);
+  font-size: clamp(2.15rem, 10vw, 3.5rem);
   font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.78;
 }
 
 .facility-item__tag,
@@ -779,9 +858,8 @@ h3 {
   color: #8a5d00;
 }
 
-.facility-item h3,
-.facility-item p {
-  grid-column: 2;
+.facility-item__tag {
+  margin-top: auto;
 }
 
 .facility-item p,
@@ -796,6 +874,55 @@ h3 {
   border-left: 3px solid var(--mustard);
   border-radius: var(--radius);
   background: rgba(36, 36, 36, 0.055);
+}
+
+/* Road Less Taken divider */
+.ribbon-draw {
+  position: relative;
+  height: clamp(10rem, 24vh, 18rem);
+  max-height: 28vh;
+  overflow: hidden;
+  background: var(--charcoal-2);
+}
+
+.section--light + .ribbon-draw {
+  border-top: 2px solid var(--mustard);
+}
+
+.ribbon-draw__frame {
+  height: 100%;
+  border-right: 1px solid var(--hairline);
+  border-left: 1px solid var(--hairline);
+}
+
+.ribbon-draw__svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ribbon-draw--reverse .ribbon-draw__svg {
+  transform: scaleX(-1);
+}
+
+.ribbon-draw__path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+}
+
+.ribbon-draw__path--mustard {
+  stroke: var(--mustard);
+  stroke-width: 40;
+}
+
+/* Opaque, not translucent: at 0.68 the crossings blended into a washed-out
+   patch instead of reading as one band passing over the other. */
+.ribbon-draw__path--light {
+  stroke: var(--off-white);
+  stroke-width: 26;
 }
 
 /* Scroll-scrubbed image reveal */
@@ -814,7 +941,7 @@ h3 {
   grid-template-rows: minmax(0, 1fr) auto;
   height: min(80vh, 640px);
   overflow: hidden;
-  background: #111;
+  background: var(--charcoal-2);
 }
 
 .swipe-reveal__media {
@@ -822,9 +949,9 @@ h3 {
   min-height: 0;
   overflow: hidden;
   isolation: isolate;
-  background: #111;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
+  background: var(--charcoal-2);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 10%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 10%, #000 82%, transparent 100%);
 }
 
 .swipe-reveal__image {
@@ -915,6 +1042,49 @@ h3 {
 
 .motion-ready .swipe-reveal__crossroads-v {
   transform: scaleY(var(--swipe-progress, 0));
+  will-change: transform;
+}
+
+.motion-ready [data-ribbon-draw] .ribbon-draw__path--mustard {
+  stroke-dashoffset: var(--ribbon-mustard-offset, 1000);
+  will-change: stroke-dashoffset;
+}
+
+.motion-ready [data-ribbon-draw] .ribbon-draw__path--light {
+  stroke-dashoffset: var(--ribbon-light-offset, 1000);
+  will-change: stroke-dashoffset;
+}
+
+.motion-ready [data-crossroads-split] .story-crossroads__rule--h {
+  transform: scaleX(var(--crossroads-progress, 0));
+  will-change: transform;
+}
+
+.motion-ready [data-crossroads-split] .story-crossroads__rule--v {
+  transform: scaleY(var(--crossroads-progress, 0));
+  will-change: transform;
+}
+
+.motion-ready [data-crossroads-split] .story-crossroads__quadrant {
+  opacity: var(--crossroads-progress, 0);
+  transform: scale(var(--crossroads-progress, 0));
+  will-change: transform, opacity;
+}
+
+.motion-ready [data-facility-stack] .facility-item {
+  opacity: var(--facility-opacity, 0.18);
+  transform: translate3d(0, var(--facility-translate, 34px), 0);
+  will-change: transform, opacity;
+}
+
+.motion-ready [data-stat-rise] .link-card__index {
+  opacity: var(--stat-opacity, 0.2);
+  transform: translate3d(0, var(--stat-translate, 26px), 0);
+  will-change: transform, opacity;
+}
+
+.motion-ready [data-stat-rise] .link-card__number::after {
+  transform: scaleX(var(--stat-accent, 0));
   will-change: transform;
 }
 
@@ -1485,6 +1655,7 @@ h3 {
   }
 
   .card-grid,
+  .facility-grid,
   .package-grid,
   .detail-grid,
   .info-strip,
@@ -1496,9 +1667,23 @@ h3 {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .facility-item {
-    grid-template-columns: 3.5rem 1fr;
-    padding: 1.5rem 0;
+  .story-crossroads {
+    padding: 3.25rem 2.25rem 4.75rem 3.25rem;
+  }
+
+  .story-crossroads__rule--h {
+    bottom: 2rem;
+  }
+
+  .story-crossroads__rule--v {
+    bottom: 2rem;
+    left: 1.7rem;
+  }
+
+  .story-crossroads__quadrant {
+    left: 1.7rem;
+    width: 42%;
+    height: 2rem;
   }
 
   .checkout-modal {
@@ -1587,6 +1772,11 @@ h3 {
     bottom: -5.75rem;
   }
 
+  .section--light + .ribbon-draw {
+    border-top: 0;
+    background: var(--charcoal-2);
+  }
+
   .swipe-reveal__stage {
     grid-template-columns: minmax(0, 3fr) minmax(280px, 2fr);
     grid-template-rows: 1fr;
@@ -1616,7 +1806,22 @@ h3 {
     gap: 6rem;
   }
 
+  .story-crossroads {
+    padding: 4rem 3.5rem 5.25rem;
+  }
+
+  .story-crossroads__rule--v {
+    bottom: 0;
+    left: calc(45% - 1.5rem);
+  }
+
+  .story-crossroads__quadrant {
+    left: 0;
+    width: calc(45% - 1.5rem);
+  }
+
   .card-grid,
+  .facility-grid,
   .package-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1632,34 +1837,6 @@ h3 {
   .package-card {
     min-height: 390px;
     padding: 1.8rem 1.6rem;
-  }
-
-  .facility-item {
-    grid-template-columns: 4.5rem minmax(220px, 0.7fr) 1fr;
-    align-items: baseline;
-    gap: 1.5rem;
-  }
-
-  .facility-item::before {
-    grid-row: 1;
-  }
-
-  .facility-item__tag,
-  .facility-item h3,
-  .facility-item p {
-    grid-column: auto;
-    margin-bottom: 0;
-  }
-
-  .facility-item__tag {
-    position: absolute;
-    left: 4.5rem;
-    top: 3.4rem;
-  }
-
-  .facility-item p {
-    justify-self: end;
-    max-width: 420px;
   }
 
   .detail-grid {
@@ -1722,6 +1899,34 @@ h3 {
   .motion-ready .swipe-reveal__image--training {
     clip-path: none;
     will-change: auto;
+  }
+
+  [data-ribbon-draw] .ribbon-draw__path {
+    stroke-dashoffset: 0 !important;
+    will-change: auto !important;
+  }
+
+  [data-crossroads-split] .story-crossroads__rule,
+  [data-crossroads-split] .story-crossroads__quadrant {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+
+  [data-facility-stack] .facility-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+
+  [data-stat-rise] .link-card__index,
+  [data-stat-rise] .link-card__number::after {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
   }
 
   .swipe-reveal__crossroads-h,
