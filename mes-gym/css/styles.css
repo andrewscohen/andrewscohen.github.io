@@ -1777,6 +1777,22 @@ h3 {
     background: var(--charcoal-2);
   }
 
+  /* At this width the frame is at (or near) its 1180px container cap, so a
+     short "laptop" viewport height (24vh landing well under ~280px) makes
+     the frame wide-and-short relative to the ribbon SVG's 1200x400 viewBox.
+     preserveAspectRatio="slice" then crops top/bottom past the curve's own
+     margin and cuts into the strokes themselves. A 280px floor keeps the
+     frame close enough to the viewBox's 3:1 aspect that slice-cropping
+     never eats past that margin, at any viewport height. */
+  .ribbon-draw {
+    height: clamp(280px, 24vh, 18rem);
+    /* the base rule's max-height: 28vh is a safety cap for tall viewports,
+       but on a short "laptop" viewport it undercuts the 280px floor above
+       (28vh of 780px = 218px) — the clamp's own 18rem upper bound already
+       does that job here, so lift the vh-based cap at this width. */
+    max-height: none;
+  }
+
   .swipe-reveal__stage {
     grid-template-columns: minmax(0, 3fr) minmax(280px, 2fr);
     grid-template-rows: 1fr;
